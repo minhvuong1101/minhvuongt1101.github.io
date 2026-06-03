@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truong Minh Vuong Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0F1729; 
+            --navy2: #162035; 
+            --off-white: #F5F5F0;
+            --blue: #2554E7; 
+            --purple: #9333EA; 
+            --green: #10B981; 
+            --orange: #F97316; 
+            --red: #EF4444;
+            --border: #E2E8F0; 
+            --bg-surface: #F8FAFC; 
+            --text-primary: #1A202C;
+            --text-muted: #64748B; 
+            --text-light: #94A3B8;
+            --radius-lg: 16px; 
+            --radius-md: 12px; 
+            --radius-sm: 8px; 
+            --radius-xs: 4px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-surface);
+            line-height: 1.6;
+        }
+        h1, h2, h3, .kpi-value, .vkpi-val, .chart-title {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .top-bar { height: 52px; background: var(--navy); }
+        
+        .hero {
+            background: var(--navy2);
+            padding: 60px 48px;
+            color: rgba(255,255,255,0.93);
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .hero h1 { font-size: 42px; margin-bottom: 16px; font-weight: 700; color: white; }
+        .hero p { font-size: 18px; max-width: 700px; margin: 0 auto 24px; color: rgba(255,255,255,0.75); }
+        .hero .cta {
+            display: inline-block;
+            background: rgba(255,255,255,0.04);
+            border: 0.5px solid rgba(255,255,255,0.08);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .hero .cta:hover { background: rgba(255,255,255,0.1); }
+
+        .anchor-nav {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 0 48px;
+            display: flex;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            justify-content: center;
+        }
+        .anchor-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 16px 24px;
+            border-bottom: 2px solid transparent;
+            text-decoration: none;
+        }
+        .anchor-link:hover, .anchor-link.active {
+            color: var(--blue);
+            border-bottom-color: var(--blue);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 48px;
+        }
+        
+        .section { margin-bottom: 68px; }
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+            border-bottom: 2px solid var(--blue);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        /* About / Skills */
+        .finding-box {
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 22px;
+            border-left: 4px solid var(--blue);
+            background: rgba(37,84,231,0.04);
+        }
+        .finding-text { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .kpi-card {
+            background: white; border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 15px 17px;
+            text-align: center;
+        }
+        .kpi-value { font-size: 20px; font-weight: 700; color: var(--navy2); }
+        .kpi-label { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .chart-block {
+            background: white; border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .chart-block:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .project-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid var(--border); }
+        .project-content { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+        .chart-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--navy); text-decoration: none; }
+        .chart-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; flex: 1; }
+        .project-link {
+            align-self: flex-start;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px; font-weight: 600;
+            color: var(--blue); text-decoration: none;
+            padding: 6px 12px;
+            background: rgba(37,84,231,0.04);
+            border-radius: var(--radius-sm);
+        }
+        .project-link:hover { background: rgba(37,84,231,0.1); }
+
+        /* Contact (Verdict panel style) */
+        .verdict-panel {
+            background: var(--navy); border-radius: var(--radius-md);
+            padding: 32px; margin-top: 24px; color: white;
+        }
+        .vp-title { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 24px; color: white; }
+        .vp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .vp-item { margin-bottom: 16px; }
+        .vp-item-label { font-size: 13px; font-family: 'IBM Plex Mono', monospace; color: var(--text-light); text-transform: uppercase; margin-bottom: 4px; }
+        .vp-item-text { font-size: 16px; color: rgba(255,255,255,0.9); }
+        .vp-item-text a { color: var(--blue); text-decoration: none; }
+        .vp-item-text a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .projects-grid, .vp-grid { grid-template-columns: 1fr; }
+            .hero { padding: 40px 24px; }
+            .container { padding: 24px; }
+            .anchor-nav { overflow-x: auto; justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar"></div>
+
+    <header class="hero" id="home">
+        <h1>Truong Minh Vuong</h1>
+        <p>Data lover with strong problem solving skills. Passionate about analyzing and interpreting complex information to uncover insights and drive meaningful results.</p>
+        <a href="#projects" class="cta">View My Work</a>
+    </header>
+
+    <nav class="anchor-nav">
+        <a href="#about" class="anchor-link">About</a>
+        <a href="#skills" class="anchor-link">Skills</a>
+        <a href="#projects" class="anchor-link active">Projects</a>
+        <a href="#contact" class="anchor-link">Contact</a>
+    </nav>
+
+    <main class="container">
+        
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="finding-box">
+                <div class="finding-text">Data Analysis & Problem Solving</div>
+                <p>I am dedicated to transforming raw data into actionable insights. With a strong foundation in data analytics and visualization, I specialize in building dashboards and comprehensive reports that assist businesses in making informed, data-driven decisions.</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value">Data Analysis</div>
+                    <div class="kpi-label">SQL, Python</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">Visualization</div>
+                    <div class="kpi-label">Power BI, D3.js</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">Business Intel</div>
+                    <div class="kpi-label">Dashboards & Reports</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">Problem Solving</div>
+                    <div class="kpi-label">Analytical Thinking</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- Project 0: AI Analytic Agent -->
+                <article class="chart-block">
+                    <img src="images/ai_agent.jpg" alt="AI Analytic Agent" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=AI+Agent+Architecture'">
+                    <div class="project-content">
+                        <a href="analytic_agent.html" class="chart-title">AI Customer Insight Analytic Agent</a>
+                        <p class="chart-subtitle">Tự động hóa toàn trình quy trình làm báo cáo Customer Insights cho Ban Lãnh đạo, rút ngắn thời gian từ 1 tuần xuống 4 giờ với 3-phase pipeline (Human-in-the-loop).</p>
+                        <a href="analytic_agent.html" class="project-link">View Project →</a>
+                    </div>
+                </article>
+
+                <!-- Project 1 -->
+                <article class="chart-block">
+                    <img src="images/business.jpg" alt="Bank Dashboard" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Project+Image'">
+                    <div class="project-content">
+                        <a href="bank_dashboard.html" class="chart-title">Bank Capital Mobilization Dashboard</a>
+                        <p class="chart-subtitle">Analyzes deposit trends, cost of funds, and term structures to provide insights into financial stability and funding efficiency.</p>
+                        <a href="bank_dashboard.html" class="project-link">View Project →</a>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="chart-block">
+                    <img src="images/rfm_pic.png" alt="RFM Analysis" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Project+Image'">
+                    <div class="project-content">
+                        <a href="rfm.html" class="chart-title">RFM Analysis</a>
+                        <p class="chart-subtitle">Applied RFM Analysis using SQL and Power BI for Customer Segmentation to optimize marketing efforts and customer retention.</p>
+                        <a href="rfm.html" class="project-link">View Project →</a>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="chart-block">
+                    <img src="images/finance_pic.jpg" alt="Finance Report" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Project+Image'">
+                    <div class="project-content">
+                        <a href="finance.html" class="chart-title">Báo cáo Quản trị tài chính</a>
+                        <p class="chart-subtitle">Hệ thống nhập liệu SharePoint và Power BI giúp theo dõi kinh doanh, dòng tiền và chỉ số tài chính doanh nghiệp.</p>
+                        <a href="finance.html" class="project-link">View Project →</a>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="chart-block">
+                    <img src="images/hr_pic.jpg" alt="HR Report" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Project+Image'">
+                    <div class="project-content">
+                        <a href="hr.html" class="chart-title">Báo cáo Quản trị nhân sự</a>
+                        <p class="chart-subtitle">Tổng hợp và phân tích dữ liệu nhân sự, hỗ trợ quá trình ra quyết định và quản lý nguồn nhân lực.</p>
+                        <a href="hr.html" class="project-link">View Project →</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="verdict-panel">
+                <h2 class="vp-title">Get In Touch</h2>
+                <div class="vp-grid">
+                    <div>
+                        <div class="vp-item">
+                            <div class="vp-item-label">Address</div>
+                            <div class="vp-item-text">Hai Ba Trung, Ha Noi</div>
+                        </div>
+                        <div class="vp-item">
+                            <div class="vp-item-label">Phone</div>
+                            <div class="vp-item-text">(+84) 942 847 606</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="vp-item">
+                            <div class="vp-item-label">Email</div>
+                            <div class="vp-item-text"><a href="mailto:minhvuongt1101@gmail.com">minhvuongt1101@gmail.com</a></div>
+                        </div>
+                        <div class="vp-item">
+                            <div class="vp-item-label">Social</div>
+                            <div class="vp-item-text">
+                                <a href="https://www.linkedin.com/in/truongminh-vuong110/" target="_blank">LinkedIn</a> • 
+                                <a href="#" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Simple sticky nav highlighting
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.anchor-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
