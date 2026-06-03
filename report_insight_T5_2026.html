@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Insight Report — KH Lẻ T5/2026</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Calibri,sans-serif;background:#F0F4F8;color:#1A202C;font-size:14px;}
+.topbar{background:#002060;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;}
+.topbar h1{font-size:16px;font-weight:700;color:#fff;}
+.topbar .meta{font-size:12px;color:rgba(255,255,255,.5);}
+.verdict{background:#162035;margin:16px 32px;padding:14px 20px;border-left:4px solid #0468BF;border-radius:6px;color:rgba(255,255,255,.9);font-size:14px;font-weight:600;}
+.nav{background:#fff;border-bottom:2px solid #E2E8F0;padding:0 32px;display:flex;overflow-x:auto;position:sticky;top:0;z-index:100;}
+.nav a{padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#64748B;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;}
+.nav a:hover,.nav a.active{color:#0468BF;border-bottom-color:#0468BF;}
+main{max-width:1140px;margin:0 auto;padding:24px 32px 80px;}
+.section{margin-bottom:48px;scroll-margin-top:56px;}
+.section-title{font-size:17px;font-weight:700;color:#002060;margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid #002060;}
+.subsection{margin-bottom:28px;}
+.subsection-title{font-size:14px;font-weight:700;color:#334155;margin-bottom:8px;}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #E2E8F0;margin-bottom:14px;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+thead tr{background:#002060;color:#fff;}
+th{padding:9px 12px;text-align:left;font-weight:600;font-size:12px;}
+td{padding:7px 12px;border-bottom:1px solid #F1F5F9;}
+tr:last-child td{border-bottom:none;}
+tr.alt td{background:#F8FAFF;}
+.callout{padding:10px 14px;border-radius:6px;margin-bottom:14px;font-size:13px;line-height:1.55;}
+.callout.info{background:#DEEAF1;border-left:3px solid #0468BF;color:#0C3251;}
+.callout.warning{background:#FFF2CC;border-left:3px solid #E97132;color:#7A4E0A;}
+.callout.success{background:#E2EFDA;border-left:3px solid #1D6F42;color:#1A4D2E;}
+.callout.danger{background:#FDECEA;border-left:3px solid #C00000;color:#7A1717;}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:20px;}
+.kpi-card{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.kpi-label{font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:.04em;}
+.kpi-value{font-size:20px;font-weight:700;color:#002060;margin:4px 0 2px;}
+.kpi-delta{font-size:12px;font-weight:600;}
+.kpi-delta.pos{color:#1D6F42;}
+.kpi-delta.neg{color:#C00000;}
+.kpi-delta.neu{color:#94A3B8;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.chart-wrap{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:14px;margin-bottom:14px;}
+.flag-red{color:#C00000;font-weight:700;}
+.flag-orange{color:#E97132;font-weight:700;}
+.flag-green{color:#1D6F42;font-weight:700;}
+.scqa-block{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:20px 24px;margin-bottom:20px;}
+.scqa-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0468BF;margin-bottom:6px;}
+.scqa-text{line-height:1.65;}
+.facts-list{list-style:none;padding:0;}
+.facts-list li{padding:8px 0;border-bottom:1px solid #F1F5F9;line-height:1.55;}
+.facts-list li:last-child{border-bottom:none;}
+.facts-list li::before{content:"✓ ";color:#1D6F42;font-weight:700;}
+.pattern-card{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.pattern-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#94A3B8;margin-bottom:4px;}
+.signal-table table{font-size:12px;}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:repeat(2,1fr);}}</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <h1>Customer Insights T5/2026 — Insight Report</h1>
+  <span class="meta">MEDLATEC GROUP | Generated: 2026-06-03</span>
+</div>
+<div class="verdict">
+  Doanh thu KH Lẻ T5/2026 tăng +13,7% YoY nhờ DT/KH tăng +16,3%, bù đắp Số KH giảm −2,2% YoY;
+  tuy nhiên tăng trưởng đến từ volume DV/Lượt (+21,5%) chứ không phải giá — down-tiering signal.
+</div>
+<nav class="nav" id="topnav">
+  <a href="#kpi">KPI</a>
+  <a href="#scqa">SCQA</a>
+  <a href="#facts">Confirmed Facts</a>
+  <a href="#demographic">Nhân khẩu học</a>
+  <a href="#service">Dịch vụ & AOV</a>
+  <a href="#forecast">Dự báo</a>
+  <a href="#signals">Signals</a><a href="#hypotheses">Hypotheses</a><a href="#deepdive">Deep-dive</a><a href="#actions">Actions</a><a href="#appendix">Phụ lục</a>
+</nav>
+<main>
+
+<section class="section" id="kpi">
+  <div class="section-title">KPI Snapshot — T5/2026</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+  <div class="kpi-label">Doanh thu</div>
+  <div class="kpi-value">102,9 tỷ</div>
+  <div class="kpi-delta pos">+13,7% YoY / −1,3% MoM</div>
+</div>
+<div class="kpi-card">
+  <div class="kpi-label">Thực thu</div>
+  <div class="kpi-value">101,4 tỷ</div>
+  <div class="kpi-delta pos">+12,6% YoY</div>
+</div>
+<div class="kpi-card">
+  <div class="kpi-label">Số KH</div>
+  <div class="kpi-value">84.596</div>
+  <div class="kpi-delta neg">−2,2% YoY</div>
+</div>
+<div class="kpi-card">
+  <div class="kpi-label">DT/KH</div>
+  <div class="kpi-value">1.216.236 đ</div>
+  <div class="kpi-delta pos">+16,3% YoY</div>
+</div>
+<div class="kpi-card">
+  <div class="kpi-label">Số KH Mới</div>
+  <div class="kpi-value">29.342</div>
+  <div class="kpi-delta neg">−8,1% YoY</div>
+</div>
+<div class="kpi-card">
+  <div class="kpi-label">DV/Lượt</div>
+  <div class="kpi-value">17,70</div>
+  <div class="kpi-delta pos">+21,5% YoY</div>
+</div>
+<div class="kpi-card">
+  <div class="kpi-label">DT TB/DV</div>
+  <div class="kpi-value">59.891 đ</div>
+  <div class="kpi-delta neg">−4,5% YoY</div>
+</div>
+<div class="kpi-card">
+  <div class="kpi-label">Gen Alpha KH</div>
+  <div class="kpi-value">6.131</div>
+  <div class="kpi-delta neg">−17,5% YoY 🔴</div>
+</div>
+  </div>
+  <div class="callout info">Tăng trưởng +13,7% YoY <b>hoàn toàn từ DT/KH</b>, không từ KH volume. MoM âm (−1,3% DT, −5,2% KH) là điều chỉnh sau T4 cao điểm — YoY phản ánh trend thực.</div>
+</section>
+
+<section class="section" id="scqa">
+  <div class="section-title">SCQA — Phân tích tổng hợp</div>
+  
+<div class="scqa-block">
+  <div class="scqa-label">Situation</div>
+  <div class="scqa-text">KH Lẻ T5/2026 đạt <strong>102,9 tỷ đồng</strong> doanh thu (+13,7% YoY) với <strong>84.596 KH</strong> (−2,2% YoY). Tháng 5 là tháng đầu mùa hè — thường có nhu cầu chăm sóc sức khỏe cao.</div>
+</div>
+<div class="scqa-block">
+  <div class="scqa-label">Complication</div>
+  <div class="scqa-text">Dù DT tăng ấn tượng, phân tích Chiều 6 tiết lộ tension quan trọng: <strong>DV/Lượt tăng +21,5% YoY nhưng DT TB/DV giảm −4,5% YoY</strong> — KH dùng nhiều DV hơn nhưng giá mỗi DV thấp hơn (down-tiering). Song song đó, <strong>KH Mới giảm −8,1% YoY</strong>, <strong>Gen Alpha N=2 ESCALATE</strong> (−24,5% KH Mới) và <strong>BV/PK KH Lẻ N=2</strong> (−3,7% YoY).</div>
+</div>
+<div class="scqa-block">
+  <div class="scqa-label">Question</div>
+  <div class="scqa-text" style="font-weight:600;font-style:italic;">Tăng trưởng DT T5/2026 có bền vững không khi đến từ volume down-tiering và DT/KH tăng của KH cũ, trong khi acquisition suy giảm liên tục và hai phân khúc cốt lõi (Gen Alpha, BV/PK) đang co lại N=2 kỳ?</div>
+</div>
+<div class="scqa-block">
+  <div class="scqa-label">Answer</div>
+  <div class="scqa-text">
+    <strong>Ngắn hạn T6:</strong> DT dự kiến điều chỉnh về 88,8 tỷ (−13,7% MoM) theo seasonality.<br>
+    <strong>Cơ chế T5:</strong> DT/Lượt +16% YoY nhờ DV/Lượt tăng — KH hiện hữu chi tiêu nhiều hơn qua nhiều xét nghiệm, không phải từ giá. Mix shift sang Hoá Sinh (57,7% lượt) kéo DT TB/DV xuống.<br>
+    <strong>Rủi ro cấu trúc:</strong> Gen Alpha pipeline co lại (−24,5% KH Mới) + Gen Y Nữ Core −11,4% YoY — hai nhóm giá trị cao đang rời bỏ sớm.<br>
+    <strong>Điểm sáng:</strong> Tại nhà DT/KH +20,4% YoY, Gen X chi tiêu tăng mạnh (+22-24% YoY), Di truyền demand +46,6% YoY.
+  </div>
+</div>
+</section>
+
+<section class="section" id="facts">
+  <div class="section-title">Confirmed Facts (10 điểm có số liệu cụ thể)</div>
+  <ul class='facts-list'><li>DT T5/2026 = 102.889 tỷ (+13,7% YoY) — 100% từ DT/KH (+16,3%), không phải từ KH volume</li><li>KH Mới = 29.342 (−8,1% YoY, −7,3% MoM) — acquisition suy giảm liên tục</li><li>Gen Alpha = 6.131 KH (−17,5% YoY), KH Mới = 3.287 (−24,5% YoY) — N=2 ESCALATE</li><li>BV/PK KH Lẻ = 29.688 (−3,7% YoY) — N=2 ESCALATE</li><li>DV/Lượt = 17,70 (+21,5% YoY) × DT TB/DV = 59.891 đ (−4,5% YoY) — down-tiering signal</li><li>MEDDENTAL = −4,6% YoY lượt, −11,6% DT — N=2 kỳ liên tiếp giảm</li><li>Med Thái Nguyên −33,1% YoY KH | Med Quảng Trị Tại nhà −33,8% YoY KH — bất thường cần điều tra</li><li>Gen Z = 16.101 KH (+8,4% YoY) — thế hệ duy nhất tăng KH</li><li>Di truyền = 9.476 lượt (+46,6% YoY) — demand tăng N=2</li><li>Tại nhà DT/KH = 993.334 đ (+20,4% YoY) — outperform BV/PK (+12,4%)</li></ul>
+</section>
+
+<section class="section" id="demographic">
+  <div class="section-title">Nhân khẩu học — Key Findings</div>
+
+  <div class="subsection">
+    <div class="subsection-title">Phân bổ KH theo thế hệ T5/2026</div>
+    <div class="chart-wrap"><canvas id="c_gen" height="200"></canvas></div>
+<script>new Chart(document.getElementById('c_gen'),{type:'bar',data:{labels:["Gen Y", "Gen X", "Gen Z", "Baby B.", "Gen Alpha", "Silent", "Gen Beta"],datasets:[{"label": "Số KH", "data": [28311, 18595, 16101, 11812, 6131, 2217, 1140], "backgroundColor": ["#002060", "#002060", "#002060", "#002060", "#002060", "#002060", "#002060"], "borderRadius": 4}]},
+options:{responsive:true,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{grid:{color:'#E2E8F0'}}}}})</script>
+    <div class="callout warning">🔴 <b>Gen Alpha −17,5% YoY KH, KH Mới −24,5%</b> — N=2 ESCALATE. <b>Gen Y Nữ Core (1989-1993) −11,4%</b> YoY — peak spending age đang rời bỏ. Gen Z là thế hệ duy nhất tăng (+8,4% YoY KH).</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">KH Mới theo thế hệ × khối</div>
+    <table><thead><tr><th>Thế hệ</th><th>Khối</th><th>KH Mới</th><th>YoY KH Mới</th></tr></thead><tbody><tr><td>Gen Y</td><td>Tại nhà</td><td>6.279</td><td>−14,4%</td></tr><tr class="alt"><td>Gen Z</td><td>Tại nhà</td><td>4.574</td><td>+1,9%</td></tr><tr><td>Gen X</td><td>Tại nhà</td><td>3.943</td><td>−5,8%</td></tr><tr class="alt"><td>🔴 Gen Alpha</td><td>Tại nhà</td><td>2.438</td><td>−23,6%</td></tr><tr><td>Gen Z</td><td>BV/PK</td><td>2.740</td><td>+0,3%</td></tr><tr class="alt"><td>🔴 Gen Alpha</td><td>BV/PK</td><td>862</td><td>−28,2%</td></tr></tbody></table>
+    <div class="callout danger">Gen Alpha mất KH Mới ở <b>cả 2 khối</b> — double decline xác nhận structural problem, không phải isolated.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Gen Y Sub-groups — drill down</div>
+    <table><thead><tr><th>Sub-group</th><th>Số KH</th><th>YoY KH</th><th>KH Mới</th><th>YoY KH Mới</th><th>DT/KH</th></tr></thead><tbody><tr><td>Gen Y Nam (1981-1996)</td><td>11.956</td><td>−1,8%</td><td>3.790</td><td>−10,4%</td><td>1.254.937 đ</td></tr><tr class="alt"><td>Gen Y Nữ Older (1981-1988)</td><td>6.019</td><td>−8,4%</td><td>1.716</td><td>−18,2%</td><td>1.320.331 đ</td></tr><tr><td>🔴 Gen Y Nữ Core (1989-1993)</td><td>6.209</td><td>−11,4%</td><td>1.830</td><td>−15,7%</td><td>1.099.499 đ</td></tr><tr class="alt"><td>Gen Y Nữ Young (1994-1996)</td><td>4.127</td><td>−6,9%</td><td>1.144</td><td>−19,3%</td><td>1.070.645 đ</td></tr></tbody></table>
+  </div>
+</section>
+
+<section class="section" id="service">
+  <div class="section-title">Dịch vụ & AOV — Key Findings</div>
+
+  <div class="subsection">
+    <div class="subsection-title">Ma trận chẩn đoán AOV</div>
+    <table><thead><tr><th>Chỉ số</th><th>T5/2026</th><th>%MoM</th><th>%YoY</th><th>Signal</th></tr></thead><tbody><tr><td>Số lượt</td><td>97.085</td><td>−4,8%</td><td>−2,0%</td><td>→</td></tr><tr class="alt"><td>Lượt/KH</td><td>1,1476</td><td>+0,4%</td><td>+0,3%</td><td>→ Ổn định</td></tr><tr><td>DT/Lượt</td><td>1.059.779 đ</td><td>+3,6%</td><td>+16,0%</td><td>↑ Tốt</td></tr><tr class="alt"><td>🔺 DV/Lượt</td><td>17,70</td><td>+14,2%</td><td>+21,5%</td><td>↑↑ Tăng mạnh</td></tr><tr><td>⚠️ DT TB/DV</td><td>59.891 đ</td><td>−9,3%</td><td>−4,5%</td><td>↓ Down-tiering</td></tr></tbody></table>
+    <div class="callout warning">DV/Lượt ↑ (+21,5%) × DT TB/DV ↓ (−4,5%) = <b>Volume-driven, not price-driven</b>. Hoá Sinh chiếm 57,7% tổng lượt chỉ định — mix shift sang DV cơ bản giá thấp kéo DT TB/DV xuống.</div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Chuyên khoa — lượt chỉ định T5/2026</div>
+    <div class="chart-wrap"><canvas id="c_chuyenkhoa" height="180"></canvas></div>
+<script>new Chart(document.getElementById('c_chuyenkhoa'),{type:'bar',data:{labels:["Xét nghiệm", "CĐHA", "Lâm sàng", "Thăm dò CN", "MEDDENTAL"],datasets:[{"label": "Lượt chỉ định", "data": [1488678, 107253, 43082, 21284, 3864], "backgroundColor": ["#002060", "#0468BF", "#0468BF", "#0468BF", "#C00000"], "borderRadius": 4}]},
+options:{responsive:true,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{grid:{color:'#E2E8F0'}}}}})</script>
+    <div class="callout warning">🔴 MEDDENTAL −4,6% YoY lượt, −11,6% YoY DT — N=2 giảm liên tiếp. Di truyền +46,6% YoY — cần đảm bảo capacity.</div>
+  </div>
+</section>
+
+<section class="section" id="forecast">
+  <div class="section-title">Dự báo T6/2026 — Holt-Winters</div>
+  <div class="callout info">⚠️ MAPE = in-sample (n=24 = minimum). Dùng CI 80% cho planning, không dùng point estimate.</div>
+  <div class="chart-wrap"><canvas id="c_fc" height="220"></canvas></div>
+<script>new Chart(document.getElementById('c_fc'),{type:'line',data:{labels:["T3/2026", "T4/2026", "T5/2026", "T6 Dự báo"],datasets:[{"label": "Total", "data": [85.2, 87.0, 102.9, 88.8], "borderColor": "#002060", "backgroundColor": "rgba(0,32,96,.1)", "tension": 0.3, "fill": true, "pointRadius": 4}, {"label": "Tại nhà", "data": [51.6, 54.5, 55.5, 52.9], "borderColor": "#0468BF", "tension": 0.3, "pointRadius": 4}, {"label": "BV/PK", "data": [33.7, 32.6, 47.4, 38.1], "borderColor": "#E97132", "tension": 0.3, "pointRadius": 4}]},
+options:{responsive:true,plugins:{legend:{position:'top'}},scales:{x:{grid:{display:false}},y:{grid:{color:'#E2E8F0'}}}}})</script>
+  <table><thead><tr><th>Scope</th><th>T5/2026</th><th>T+1 Dự báo</th><th>CI 80%</th><th>MoM Δ</th></tr></thead><tbody><tr><td>Total KH Lẻ</td><td>102,9 tỷ</td><td>88,8 tỷ</td><td>[81,4–96,2]</td><td>−13,7%</td></tr><tr class="alt"><td>Tại nhà</td><td>55,5 tỷ</td><td>52,9 tỷ</td><td>[48,7–57,2]</td><td>−4,7%</td></tr><tr><td>BV/PK</td><td>47,4 tỷ</td><td>38,1 tỷ</td><td>[34,8–41,4]</td><td>−19,6%</td></tr></tbody></table>
+  <div class="callout info">BV/PK forecast −19,6% MoM — nếu T5 là spike, T6 return-to-mean. Nếu BV/PK actual T6 > 41,4 tỷ → recovery thực sự.</div>
+</section>
+
+<section class="section" id="signals">
+  <div class="section-title">Signals cần theo dõi T6/2026</div>
+  <div class="signal-table"><table><thead><tr><th>Signal</th><th>Ngưỡng lo ngại</th><th>Đếm kỳ</th><th>Trạng thái T5</th></tr></thead><tbody><tr><td>Gen Alpha KH Mới YoY âm</td><td>N=3 → critical</td><td>N=2</td><td>🔴 ESCALATE</td></tr><tr class="alt"><td>BV/PK KH Lẻ YoY âm</td><td>N=3 → systemic</td><td>N=2</td><td>🔴 ESCALATE</td></tr><tr><td>KH Mới tổng YoY âm</td><td>N=3 → alarm</td><td>N=2</td><td>🟠 Theo dõi chặt</td></tr><tr class="alt"><td>MEDDENTAL DT YoY âm</td><td>N=3 → strategic review</td><td>N=2</td><td>🟠 Cải thiện nhưng vẫn âm</td></tr><tr><td>DT TB/DV YoY âm</td><td>N=2 → confirm down-tiering</td><td>N=1 (mới T5)</td><td>🟡 Mới phát hiện</td></tr><tr class="alt"><td>Di truyền demand tăng mạnh</td><td>Capacity warning > 50%</td><td>N=2</td><td>🟢 Tích cực</td></tr></tbody></table></div>
+  <div class="callout danger">Action khẩn T6: (1) Field investigation Med Thái Nguyên & Quảng Trị (2) Exit survey BV/PK (3) Campaign nhi đồng Gen Alpha (4) Verify Di truyền capacity</div>
+</section>
+
+
+<section class="section" id="hypotheses">
+  <div class="section-title">Hypotheses T5/2026 (Advisor Analysis)</div>
+
+  <div class="subsection">
+    <div class="subsection-title">H1: BV/PK đang "premium-izing" — mất KH volume thấp, giữ KH giá trị cao</div>
+    <div class="callout info">
+      <b>Evidence:</b> BV/PK KH −3,7% YoY nhưng DT +8,3% YoY → DT/KH tăng +12,4% YoY. KH Cũ BV/PK DT/KH = 1.531.115 đ (+13,4% YoY). Gen Y BV/PK DT −0,4% YoY trong khi Baby Boomers BV/PK DT +9,9% YoY.<br>
+      <b>Để confirm:</b> Pull DT/KH của KH Mới BV/PK theo bệnh lý vs kỳ trước. Tỷ lệ KH quay lại BV/PK (repeat rate).
+    </div>
+    <table>
+      <thead><tr><th>Segment</th><th>Số KH</th><th>%YoY KH</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead>
+      <tbody>
+        <tr><td>BV/PK KH Cũ</td><td>21.568</td><td>N/A</td><td>1.531.115 đ</td><td>+13,4%</td></tr>
+        <tr class="alt"><td>BV/PK KH Mới</td><td>8.120</td><td>−8,3%</td><td>1.769.340 đ</td><td>+11,0%</td></tr>
+        <tr><td>Gen Y BV/PK</td><td>9.889</td><td>−7,5%</td><td>1.569.249 đ</td><td>—</td></tr>
+        <tr class="alt"><td>Baby Boomers BV/PK</td><td>3.150</td><td>−12,8%</td><td>2.248.551 đ</td><td>—</td></tr>
+        <tr><td>Gen Z BV/PK</td><td>7.419</td><td>+7,1%</td><td>1.327.269 đ</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">H2: Down-tiering DT TB/DV là mix shift, không phải giảm giá thực</div>
+    <div class="callout info">
+      <b>Evidence:</b> Hoá Sinh = 990.036 lượt (+23,5% YoY) chiếm 57,7% tổng lượt chỉ định. Hoá Sinh DT DV +26,7% YoY — tăng nhanh hơn DT DV tổng. Khi DV cơ bản giá thấp tăng nhiều hơn DV cao cấp → DT TB/DV bình quân giảm.<br>
+      <b>Để confirm:</b> Tính counterfactual: nếu giữ nguyên mix T5/2025, DT TB/DV sẽ là bao nhiêu?
+    </div>
+    <table>
+      <thead><tr><th>Nhóm DV</th><th>Lượt chỉ định</th><th>% Tổng lượt</th><th>%YoY Lượt</th><th>DT DV (tỷ)</th><th>%YoY DT DV</th></tr></thead>
+      <tbody>
+        <tr><td>Hoá Sinh</td><td>990.036</td><td>57,7%</td><td>+23,5%</td><td>51,2</td><td>+26,7%</td></tr>
+        <tr class="alt"><td>Miễn dịch</td><td>202.474</td><td>11,8%</td><td>+3,3%</td><td>42,7</td><td>+4,9%</td></tr>
+        <tr><td>Huyết học</td><td>142.598</td><td>8,3%</td><td>+22,8%</td><td>19,2</td><td>+19,3%</td></tr>
+        <tr class="alt"><td>NT-HM</td><td>95.925</td><td>5,6%</td><td>+10,4%</td><td>15,4</td><td>+12,4%</td></tr>
+        <tr><td>Di truyền</td><td>9.476</td><td>0,6%</td><td>+46,6%</td><td>24,1</td><td>+48,6%</td></tr>
+        <tr class="alt"><td>🔴 MEDDENTAL</td><td>3.864</td><td>0,2%</td><td>−4,6%</td><td>7,0</td><td>−11,6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">H3: Med Thái Nguyên & Quảng Trị decline là operational, không phải market demand</div>
+    <div class="callout danger">
+      <b>Evidence:</b> Med Thái Nguyên −33,1% YoY KH nhưng DT/KH +43,1% YoY — KH còn lại chi tiêu nhiều hơn. Med Quảng Trị Tại nhà −33,8% nhưng BV/PK +10% → 2 khối cùng tỉnh đi ngược chiều nhau.<br>
+      <b>Cần điều tra khẩn:</b> Nhân sự thay đổi? Đối thủ mới? Chiến lược pricing?
+    </div>
+    <table>
+      <thead><tr><th>Đơn vị</th><th>Số KH</th><th>%YoY KH</th><th>DT (tỷ)</th><th>%YoY DT</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead>
+      <tbody>
+        <tr><td>🔴 Med Thái Nguyên (TN)</td><td>836</td><td>−33,1%</td><td>0,75</td><td>−4,2%</td><td>891.893 đ</td><td>+43,1%</td></tr>
+        <tr class="alt"><td>🔴 Med Quảng Trị (TN)</td><td>539</td><td>−33,8%</td><td>0,57</td><td>+11,9%</td><td>1.051.527 đ</td><td>+69,0%</td></tr>
+        <tr><td>Med Quảng Trị (BV/PK)</td><td>418</td><td>+10,0%</td><td>0,50</td><td>+46,0%</td><td>1.189.882 đ</td><td>+32,7%</td></tr>
+        <tr class="alt"><td>Tỉnh Thái Nguyên (province)</td><td>730</td><td>−30,1%</td><td>0,79</td><td>−2,6%</td><td>1.083.753 đ</td><td>+39,4%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">H4: Gen Alpha decline là structural pediatric competitive issue, không phải normalization</div>
+    <div class="callout danger">
+      <b>Evidence:</b> Gen Alpha KH Mới −24,5% YoY (N=2, accelerating). Double decline cả Tại nhà (−23,6%) và BV/PK (−28,2%). Gen Beta (2025+) ngược lại +115,9% — so không phải all-children decline.<br>
+      <b>Cần:</b> Pull Gen Alpha by yob group (2012-2016 vs 2017-2021 vs 2022+) để identify cohort nào giảm mạnh nhất.
+    </div>
+    <table>
+      <thead><tr><th>Cohort</th><th>Số KH</th><th>%YoY KH</th><th>KH Mới</th><th>%YoY KH Mới</th></tr></thead>
+      <tbody>
+        <tr><td>🔴 Gen Alpha Tại nhà</td><td>4.045</td><td>−18,3%</td><td>2.438</td><td>−23,6%</td></tr>
+        <tr class="alt"><td>🔴 Gen Alpha BV/PK</td><td>2.117</td><td>−17,0%</td><td>862</td><td>−28,2%</td></tr>
+        <tr><td>🔴 Gen Alpha Nam</td><td>3.456</td><td>−19,8%</td><td>—</td><td>—</td></tr>
+        <tr class="alt"><td>🔴 Gen Alpha Nữ</td><td>2.675</td><td>−14,3%</td><td>—</td><td>—</td></tr>
+        <tr><td>✅ Gen Beta (2025+)</td><td>1.140</td><td>+115,9%</td><td>865</td><td>+85,6%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Carry-forward từ T4/2026</div>
+    <table>
+      <thead><tr><th>Hypothesis T4</th><th>Status T5</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>GT.T4.H1: BV/PK competitor tư nhân</td><td class="flag-orange">CARRY-FORWARD N=2</td><td>BV/PK KH −3,7% YoY. Strengthening.</td></tr>
+        <tr class="alt"><td>GT.T4.H2: Gen Alpha normalization</td><td class="flag-red">CARRY-FORWARD N=2 ESCALATE</td><td>KH Mới −24,5% (accelerating). Cần can thiệp.</td></tr>
+        <tr><td>GT.T4.H3: DT/KH giảm do mix shift Phường</td><td class="flag-green">REJECTED (KH Lẻ scope)</td><td>DT/KH +16,3% YoY khi filter KH Lẻ riêng.</td></tr>
+        <tr class="alt"><td>GT.T4.H4: MEDDENTAL structural decline</td><td class="flag-orange">CARRY-FORWARD N=2</td><td>−11,6% DT T5 (cải thiện vs −29,6% T4 nhưng vẫn âm).</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="deepdive">
+  <div class="section-title">Hướng phân tích sâu — Ưu tiên</div>
+
+  <div class="subsection">
+    <div class="subsection-title">Ưu tiên cao — Pull ngay từ MCP</div>
+    <table>
+      <thead><tr><th>#</th><th>Phân tích</th><th>Mục tiêu</th><th>DAX</th><th>Effort</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Gen Alpha by yob group</td><td>Độ tuổi nào giảm mạnh nhất</td><td>SUMMARIZE(yob_group, gen="Gen Alpha")</td><td>Thấp</td></tr>
+        <tr class="alt"><td>2</td><td>Trend tháng T1-T5/2026 Med Thái Nguyên & Quảng Trị</td><td>Khi nào bắt đầu sụt?</td><td>Union 5 ROW() với date filter theo tháng</td><td>Thấp</td></tr>
+        <tr><td>3</td><td>Hoá Sinh share T5/2026 vs T5/2025</td><td>Confirm H2 mix shift</td><td>% lượt Hoá Sinh / tổng lượt per kỳ</td><td>Thấp</td></tr>
+        <tr class="alt"><td>4</td><td>BV/PK repeat rate KH</td><td>Test H1 premium-izing</td><td>count_customer WHERE visit_count >= 2</td><td>Trung bình</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">Cần external input</div>
+    <table>
+      <thead><tr><th>Phân tích</th><th>Cần data gì</th><th>Nguồn</th><th>Giải quyết câu hỏi</th></tr></thead>
+      <tbody>
+        <tr><td>Med Thái Nguyên / Quảng Trị root cause</td><td>Nhân sự, khiếu nại T1-T5/2026</td><td>HR, CRM</td><td>H3: Operational hay competitive?</td></tr>
+        <tr class="alt"><td>Gen Alpha competitive landscape</td><td>Phòng khám nhi tư nhân mở mới</td><td>Market research</td><td>H4: MEDLATEC mất thị phần nhi?</td></tr>
+        <tr><td>BV/PK exit survey</td><td>Lý do ngừng đến BV/PK T1-T4/2026</td><td>CRM, customer service</td><td>GT.T4.H1: Competitor hay internal?</td></tr>
+        <tr class="alt"><td>Di truyền capacity</td><td>Slot xét nghiệm gen hiện tại</td><td>Operations</td><td>Demand +46,6% có bị capped không?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="actions">
+  <div class="section-title">Action Items T6/2026</div>
+  <table>
+    <thead><tr><th>ID</th><th>Hành động</th><th>Priority</th><th>Thời hạn</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td>Field investigation Med Thái Nguyên &amp; Quảng Trị (−33% YoY KH)</td><td class="flag-red">🔴 Khẩn</td><td>T6/2026</td></tr>
+      <tr class="alt"><td>A2</td><td>Exit survey KH Lẻ BV/PK ngừng tái khám T1-T5/2026 (N=2 ESCALATE)</td><td class="flag-red">🔴 Khẩn</td><td>T6/2026</td></tr>
+      <tr><td>A3</td><td>Campaign nhi đồng T6-T7: Gen Alpha KH Mới −24,5% (N=2)</td><td class="flag-red">🔴 Khẩn</td><td>T6/2026</td></tr>
+      <tr class="alt"><td>A4</td><td>Kiểm tra capacity Di truyền (demand +46,6% YoY N=2)</td><td class="flag-orange">🟠 Quan trọng</td><td>T6/2026</td></tr>
+      <tr><td>A5</td><td>Strategic review MEDDENTAL (N=2 giảm liên tiếp)</td><td class="flag-orange">🟠 Quan trọng</td><td>T6-T7/2026</td></tr>
+    </tbody>
+  </table>
+</section>
+<style>
+.flag-red{color:#C00000;font-weight:700}
+.flag-orange{color:#E97132;font-weight:700}
+.flag-green{color:#1D6F42;font-weight:700}
+</style>
+
+<section class="section" id="appendix">
+  <div class="section-title">Phụ lục — Data Tables đầy đủ</div>
+
+  <div class="subsection">
+    <div class="subsection-title">2.3 Thế hệ × Khối (đầy đủ)</div>
+    <table><thead><tr><th>Thế hệ</th><th>Khối</th><th>Số KH</th><th>%MoM KH</th><th>%YoY KH</th><th>Số KH Mới</th><th>%MoM KH Mới</th><th>%YoY KH Mới</th><th>Doanh thu</th><th>%MoM DT</th><th>%YoY DT</th><th>DT/KH</th><th>%MoM DT/KH</th><th>%YoY DT/KH</th></tr></thead><tbody><tr><td>Gen Y</td><td>Tại nhà</td><td>18761</td><td>-7.4%</td><td>-5.3%</td><td>6279</td><td>-11.9%</td><td>-14.3%</td><td>18678139432.40</td><td>-1.1%</td><td>+13.7%</td><td>995583.36</td><td>-6.3%</td><td>+20.0%</td></tr><tr class="alt"><td>Gen X</td><td>Tại nhà</td><td>12965</td><td>-11.4%</td><td>+0.5%</td><td>3943</td><td>-12.2%</td><td>-5.8%</td><td>14852588446.10</td><td>-2.0%</td><td>+30.4%</td><td>1145591.09</td><td>-9.6%</td><td>+29.8%</td></tr><tr><td>Gen Y</td><td>BV/PK</td><td>9889</td><td>-0.5%</td><td>-7.5%</td><td>2286</td><td>-2.2%</td><td>-13.9%</td><td>15518299441.00</td><td>-4.6%</td><td>-0.4%</td><td>1569248.60</td><td>+4.4%</td><td>+7.8%</td></tr><tr class="alt"><td>Gen Z</td><td>Tại nhà</td><td>8833</td><td>+1.7%</td><td>+9.1%</td><td>4574</td><td>-1.2%</td><td>+1.9%</td><td>8097408367.20</td><td>+7.2%</td><td>+22.9%</td><td>916722.33</td><td>-5.2%</td><td>+12.6%</td></tr><tr><td>Baby Boomers</td><td>Tại nhà</td><td>8819</td><td>-14.1%</td><td>-0.3%</td><td>2978</td><td>-17.2%</td><td>-3.6%</td><td>7989608512.80</td><td>-7.4%</td><td>+17.4%</td><td>905954.02</td><td>-7.2%</td><td>+17.7%</td></tr><tr class="alt"><td>Gen Z</td><td>BV/PK</td><td>7419</td><td>+4.6%</td><td>+7.1%</td><td>2740</td><td>+2.5%</td><td>+0.3%</td><td>9847009641.00</td><td>+4.4%</td><td>+18.5%</td><td>1327269.13</td><td>+0.1%</td><td>+10.6%</td></tr><tr><td>Gen X</td><td>BV/PK</td><td>5894</td><td>+0.5%</td><td>-1.6%</td><td>1255</td><td>+8.4%</td><td>-4.3%</td><td>11682464110.00</td><td>-3.0%</td><td>+11.9%</td><td>1982094.35</td><td>+3.6%</td><td>+13.8%</td></tr><tr class="alt"><td>Gen Alpha</td><td>Tại nhà</td><td>4045</td><td>-3.6%</td><td>-18.3%</td><td>2438</td><td>-4.7%</td><td>-23.6%</td><td>3801939667.30</td><td>-2.9%</td><td>-5.5%</td><td>939910.92</td><td>-0.7%</td><td>+15.7%</td></tr><tr><td>Baby Boomers</td><td>BV/PK</td><td>3150</td><td>-4.2%</td><td>-12.8%</td><td>761</td><td>+1.5%</td><td>-4.0%</td><td>7082935024.00</td><td>-0.1%</td><td>+9.9%</td><td>2248550.80</td><td>-4.0%</td><td>+26.0%</td></tr><tr class="alt"><td>Gen Alpha</td><td>BV/PK</td><td>2117</td><td>-7.9%</td><td>-17.0%</td><td>862</td><td>-7.7%</td><td>-28.2%</td><td>2022566023.00</td><td>-2.0%</td><td>-5.7%</td><td>955392.55</td><td>-6.0%</td><td>+13.6%</td></tr><tr><td>Silent Gen</td><td>Tại nhà</td><td>1516</td><td>-3.0%</td><td>-2.3%</td><td>557</td><td>-6.5%</td><td>-10.7%</td><td>1291022989.00</td><td>+3.4%</td><td>+10.6%</td><td>851598.28</td><td>-6.2%</td><td>+13.2%</td></tr><tr class="alt"><td>Gen Beta</td><td>Tại nhà</td><td>841</td><td>-8.3%</td><td>+89.4%</td><td>705</td><td>-12.4%</td><td>+74.9%</td><td>736682460.00</td><td>-16.4%</td><td>+149.6%</td><td>875960.12</td><td>+9.7%</td><td>+31.8%</td></tr><tr><td>Silent Gen</td><td>BV/PK</td><td>713</td><td>-0.4%</td><td>-15.1%</td><td>49</td><td>-15.5%</td><td>-51.0%</td><td>822936693.00</td><td>+14.9%</td><td>+13.5%</td><td>1154188.91</td><td>-13.3%</td><td>+33.7%</td></tr><tr class="alt"><td>Gen Beta</td><td>BV/PK</td><td>308</td><td>+3.7%</td><td>+262.4%</td><td>167</td><td>+3.1%</td><td>+160.9%</td><td>275525738.00</td><td>+10.5%</td><td>+386.5%</td><td>894564.08</td><td>-6.1%</td><td>+34.3%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">2.4 Thế hệ × Giới tính × Khối (top 20)</div>
+    <table><thead><tr><th>Thế hệ</th><th>Giới tính</th><th>Khối</th><th>Số KH</th><th>%YoY KH</th><th>Doanh thu</th><th>%YoY DT</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead><tbody><tr><td>Gen Y</td><td>Nữ</td><td>Tại nhà</td><td>11204</td><td>-9.1%</td><td>10749395270.10</td><td>+9.7%</td><td>959424.78</td><td>+20.7%</td></tr><tr class="alt"><td>Gen Y</td><td>Nam</td><td>Tại nhà</td><td>7557</td><td>+0.9%</td><td>7928744162.30</td><td>+19.5%</td><td>1049192.03</td><td>+18.5%</td></tr><tr><td>Gen X</td><td>Nữ</td><td>Tại nhà</td><td>6828</td><td>+1.6%</td><td>7603020650.00</td><td>+32.9%</td><td>1113506.25</td><td>+30.9%</td></tr><tr class="alt"><td>Gen X</td><td>Nam</td><td>Tại nhà</td><td>6137</td><td>-0.7%</td><td>7249567796.10</td><td>+27.8%</td><td>1181288.54</td><td>+28.7%</td></tr><tr><td>Gen Z</td><td>Nữ</td><td>Tại nhà</td><td>5716</td><td>+10.9%</td><td>5037059244.10</td><td>+17.0%</td><td>881221.00</td><td>+5.5%</td></tr><tr class="alt"><td>Gen Y</td><td>Nữ</td><td>BV/PK</td><td>5339</td><td>-9.3%</td><td>8443019290.00</td><td>-0.3%</td><td>1581385.89</td><td>+9.9%</td></tr><tr><td>Gen Z</td><td>Nữ</td><td>BV/PK</td><td>4996</td><td>+7.6%</td><td>6493648647.00</td><td>+15.5%</td><td>1299769.55</td><td>+7.4%</td></tr><tr class="alt"><td>Baby Boomers</td><td>Nữ</td><td>Tại nhà</td><td>4895</td><td>-0.2%</td><td>4302056368.80</td><td>+16.0%</td><td>878867.49</td><td>+16.2%</td></tr><tr><td>Gen Y</td><td>Nam</td><td>BV/PK</td><td>4550</td><td>-5.4%</td><td>7075280151.00</td><td>-0.4%</td><td>1555006.63</td><td>+5.3%</td></tr><tr class="alt"><td>Baby Boomers</td><td>Nam</td><td>Tại nhà</td><td>3924</td><td>-0.3%</td><td>3687552144.00</td><td>+19.1%</td><td>939743.16</td><td>+19.5%</td></tr><tr><td>Gen Z</td><td>Nam</td><td>Tại nhà</td><td>3117</td><td>+6.0%</td><td>3060349123.10</td><td>+34.1%</td><td>981825.19</td><td>+26.5%</td></tr><tr class="alt"><td>Gen X</td><td>Nữ</td><td>BV/PK</td><td>3062</td><td>-3.1%</td><td>6136735881.00</td><td>+7.1%</td><td>2004159.33</td><td>+10.6%</td></tr><tr><td>Gen X</td><td>Nam</td><td>BV/PK</td><td>2832</td><td>+0.0%</td><td>5545728229.00</td><td>+17.7%</td><td>1958237.37</td><td>+17.7%</td></tr><tr class="alt"><td>Gen Z</td><td>Nam</td><td>BV/PK</td><td>2423</td><td>+6.1%</td><td>3353360994.00</td><td>+24.7%</td><td>1383970.70</td><td>+17.5%</td></tr><tr><td>Gen Alpha</td><td>Nam</td><td>Tại nhà</td><td>2280</td><td>-20.8%</td><td>2169544637.30</td><td>-7.0%</td><td>951554.67</td><td>+17.5%</td></tr><tr class="alt"><td>Baby Boomers</td><td>Nữ</td><td>BV/PK</td><td>1818</td><td>-8.2%</td><td>4180835364.00</td><td>+22.4%</td><td>2299689.42</td><td>+33.4%</td></tr><tr><td>Gen Alpha</td><td>Nữ</td><td>Tại nhà</td><td>1765</td><td>-14.7%</td><td>1632395030.00</td><td>-3.3%</td><td>924869.71</td><td>+13.3%</td></tr><tr class="alt"><td>Baby Boomers</td><td>Nam</td><td>BV/PK</td><td>1332</td><td>-18.3%</td><td>2902099660.00</td><td>-4.3%</td><td>2178753.50</td><td>+17.2%</td></tr><tr><td>Gen Alpha</td><td>Nam</td><td>BV/PK</td><td>1193</td><td>-18.6%</td><td>1136268929.00</td><td>-7.0%</td><td>952446.71</td><td>+14.2%</td></tr><tr class="alt"><td>Gen Alpha</td><td>Nữ</td><td>BV/PK</td><td>924</td><td>-14.8%</td><td>886297094.00</td><td>-4.0%</td><td>959195.99</td><td>+12.7%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">2.6 Province (ngoài Hà Nội, top 25)</div>
+    <table><thead><tr><th>Tỉnh/Thành</th><th>Số KH</th><th>%MoM KH</th><th>%YoY KH</th><th>Số KH Mới</th><th>%YoY KH Mới</th><th>Doanh thu</th><th>%MoM DT</th><th>%YoY DT</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead><tbody><tr><td>Tỉnh Phú Thọ</td><td>4538</td><td>-4.5%</td><td>-5.8%</td><td>1876</td><td>-13.3%</td><td>4886694487</td><td>+6.8%</td><td>+29.0%</td><td>1076838.80</td><td>+37.0%</td></tr><tr class="alt"><td>Tỉnh Bắc Ninh</td><td>3135</td><td>-3.3%</td><td>+19.3%</td><td>1678</td><td>+11.0%</td><td>4132719264</td><td>-3.4%</td><td>+32.2%</td><td>1318251.76</td><td>+10.8%</td></tr><tr><td>Tỉnh Ninh Bình</td><td>2697</td><td>-10.9%</td><td>+4.5%</td><td>1523</td><td>-7.0%</td><td>2900471481</td><td>-6.9%</td><td>+30.5%</td><td>1075443.63</td><td>+24.9%</td></tr><tr class="alt"><td>Tỉnh Hưng Yên</td><td>2551</td><td>+2.9%</td><td>+17.5%</td><td>1479</td><td>+13.9%</td><td>2974024608</td><td>+5.4%</td><td>+41.3%</td><td>1165826.97</td><td>+20.3%</td></tr><tr><td>Tỉnh Thanh Hóa</td><td>2374</td><td>-7.0%</td><td>-3.5%</td><td>1162</td><td>-17.0%</td><td>3164179254</td><td>-1.4%</td><td>+12.8%</td><td>1332847.20</td><td>+16.9%</td></tr><tr class="alt"><td>Thành phố Hồ Chí Minh</td><td>2258</td><td>-0.9%</td><td>+13.5%</td><td>1188</td><td>+2.1%</td><td>2238535960</td><td>+7.7%</td><td>+30.1%</td><td>991379.96</td><td>+14.6%</td></tr><tr><td>Thành phố Hải Phòng</td><td>1927</td><td>-12.4%</td><td>+13.2%</td><td>1114</td><td>+6.5%</td><td>2644943685</td><td>-6.1%</td><td>+39.3%</td><td>1372570.67</td><td>+23.1%</td></tr><tr class="alt"><td>Tỉnh Nghệ An</td><td>1212</td><td>+5.1%</td><td>+3.9%</td><td>732</td><td>+0.8%</td><td>1391946440</td><td>+6.6%</td><td>+41.0%</td><td>1148470.66</td><td>+35.7%</td></tr><tr><td>Tỉnh Quảng Ninh</td><td>748</td><td>-7.4%</td><td>+1.8%</td><td>378</td><td>-16.0%</td><td>1024262998</td><td>+10.1%</td><td>+27.4%</td><td>1369335.56</td><td>+25.2%</td></tr><tr class="alt"><td>Tỉnh Quảng Trị</td><td>926</td><td>-13.2%</td><td>-10.4%</td><td>474</td><td>-16.4%</td><td>1043511450</td><td>-12.9%</td><td>+31.8%</td><td>1126902.21</td><td>+47.2%</td></tr><tr><td>Thành phố Đà Nẵng</td><td>761</td><td>+7.5%</td><td>+18.2%</td><td>442</td><td>+15.1%</td><td>590136350</td><td>+13.7%</td><td>+64.3%</td><td>775474.84</td><td>+39.1%</td></tr><tr class="alt"><td>Tỉnh Thái Nguyên</td><td>730</td><td>-22.6%</td><td>-30.1%</td><td>427</td><td>-36.7%</td><td>791139657</td><td>-3.9%</td><td>-2.6%</td><td>1083752.95</td><td>+39.4%</td></tr><tr><td>Tỉnh Hà Tĩnh</td><td>719</td><td>+6.8%</td><td>-3.1%</td><td>428</td><td>-10.5%</td><td>665428950</td><td>+16.0%</td><td>+8.6%</td><td>925492.28</td><td>+12.1%</td></tr><tr class="alt"><td>Tỉnh Khánh Hòa</td><td>576</td><td>-11.5%</td><td>+17.3%</td><td>296</td><td>+13.4%</td><td>493806790</td><td>-7.9%</td><td>+49.0%</td><td>857303.45</td><td>+27.0%</td></tr><tr><td>Tỉnh Lào Cai</td><td>528</td><td>-16.5%</td><td>+5.4%</td><td>287</td><td>-5.6%</td><td>801889766</td><td>-18.5%</td><td>+17.3%</td><td>1518730.62</td><td>+11.3%</td></tr><tr class="alt"><td>Tỉnh Gia Lai</td><td>402</td><td>-23.9%</td><td>+2.8%</td><td>187</td><td>-8.3%</td><td>391204650</td><td>-27.6%</td><td>+13.4%</td><td>973145.90</td><td>+10.3%</td></tr><tr><td>Thành phố Cần Thơ</td><td>459</td><td>-5.7%</td><td>+5.5%</td><td>263</td><td>-17.0%</td><td>272305050</td><td>+4.8%</td><td>+18.3%</td><td>593257.19</td><td>+12.1%</td></tr><tr class="alt"><td>Thành phố Huế</td><td>441</td><td>+3.3%</td><td>+3.0%</td><td>205</td><td>-9.3%</td><td>204282800</td><td>-15.9%</td><td>-18.8%</td><td>463226.30</td><td>-21.2%</td></tr><tr><td>Tỉnh Lạng Sơn</td><td>323</td><td>-12.7%</td><td>+2.2%</td><td>173</td><td>+3.6%</td><td>492842030</td><td>+18.5%</td><td>+55.7%</td><td>1525826.72</td><td>+52.3%</td></tr><tr class="alt"><td>Tỉnh Tuyên Quang</td><td>281</td><td>-1.1%</td><td>-13.5%</td><td>172</td><td>-17.3%</td><td>298124024</td><td>-15.2%</td><td>-23.2%</td><td>1060939.59</td><td>-11.2%</td></tr><tr><td>Tỉnh Sơn La</td><td>206</td><td>+3.5%</td><td>+5.1%</td><td>142</td><td>+6.0%</td><td>268426384</td><td>-17.8%</td><td>+12.0%</td><td>1303040.70</td><td>+6.6%</td></tr><tr class="alt"><td>Tỉnh An Giang</td><td>177</td><td>-11.1%</td><td>+1.7%</td><td>109</td><td>-6.0%</td><td>135090700</td><td>-3.1%</td><td>+9.8%</td><td>763224.29</td><td>+8.0%</td></tr><tr><td>Tỉnh Tây Ninh</td><td>186</td><td>-10.1%</td><td>+5.7%</td><td>87</td><td>+1.2%</td><td>165082900</td><td>+36.1%</td><td>+53.6%</td><td>887542.47</td><td>+45.3%</td></tr><tr class="alt"><td>Tỉnh Đắk Lắk</td><td>145</td><td>-39.8%</td><td>-47.1%</td><td>78</td><td>-59.2%</td><td>133152550</td><td>-14.8%</td><td>-13.9%</td><td>918293.45</td><td>+62.6%</td></tr><tr><td>Tỉnh Đồng Nai</td><td>450</td><td>-6.2%</td><td>-13.5%</td><td>266</td><td>-20.6%</td><td>336735520</td><td>-15.6%</td><td>-9.2%</td><td>748301.16</td><td>+4.9%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">3.2 Đơn vị toàn hệ thống (top 20 by DT)</div>
+    <table><thead><tr><th>Đơn vị</th><th>Miền</th><th>Khối</th><th>Doanh thu</th><th>%YoY DT</th><th>Số KH</th><th>%YoY KH</th><th>Số KH Mới</th><th>DT/KH</th></tr></thead><tbody></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">3.3 Tại nhà tỉnh (exclude TTTN HN)</div>
+    <table><thead><tr><th>Đơn vị</th><th>Miền</th><th>Số KH</th><th>%MoM KH</th><th>%YoY KH</th><th>Số KH Mới</th><th>%YoY KH Mới</th><th>Doanh thu</th><th>%MoM DT</th><th>%YoY DT</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead><tbody><tr><td>Med Đông Nam Bộ</td><td>Miền Nam</td><td>2835</td><td>-2.0%</td><td>+3.7%</td><td>1300</td><td>-5.0%</td><td>2457063920</td><td>+2.3%</td><td>+24.3%</td><td>866689.21</td><td>+19.8%</td></tr><tr class="alt"><td>Med Hưng Yên</td><td>Miền Bắc</td><td>1878</td><td>-0.6%</td><td>+18.9%</td><td>832</td><td>+21.5%</td><td>1730137720</td><td>+4.1%</td><td>+57.7%</td><td>921266.09</td><td>+32.6%</td></tr><tr><td>Med Nam Định</td><td>Miền Bắc</td><td>1564</td><td>-7.1%</td><td>-17.9%</td><td>652</td><td>-29.4%</td><td>1216528770</td><td>-2.0%</td><td>+3.5%</td><td>777831.69</td><td>+26.0%</td></tr><tr class="alt"><td>Med Bắc Ninh</td><td>Miền Bắc</td><td>1547</td><td>-7.2%</td><td>+14.3%</td><td>682</td><td>+15.2%</td><td>2044231610</td><td>+15.8%</td><td>+49.9%</td><td>1321416.68</td><td>+31.2%</td></tr><tr><td>Med Thanh Hóa</td><td>Miền Trung</td><td>1496</td><td>-2.3%</td><td>-4.2%</td><td>702</td><td>-18.8%</td><td>1563644740</td><td>+18.3%</td><td>+42.4%</td><td>1045217.07</td><td>+48.6%</td></tr><tr class="alt"><td>Med Bắc Giang</td><td>Miền Bắc</td><td>1307</td><td>-6.0%</td><td>+6.6%</td><td>574</td><td>+1.2%</td><td>1315371900</td><td>+1.6%</td><td>+24.2%</td><td>1006405.43</td><td>+16.5%</td></tr><tr><td>Med Hòa Bình</td><td>Miền Bắc</td><td>1247</td><td>-8.8%</td><td>-12.1%</td><td>549</td><td>-15.7%</td><td>1030691800</td><td>-3.4%</td><td>-1.1%</td><td>826537.13</td><td>+12.5%</td></tr><tr class="alt"><td>Med Hải Dương</td><td>Miền Bắc</td><td>1133</td><td>-14.0%</td><td>+0.0%</td><td>506</td><td>-8.8%</td><td>1214448710</td><td>+2.5%</td><td>+26.2%</td><td>1071887.65</td><td>+26.2%</td></tr><tr><td>Med Thái Bình</td><td>Miền Bắc</td><td>1073</td><td>+2.7%</td><td>+4.9%</td><td>503</td><td>-0.4%</td><td>851186550</td><td>-10.7%</td><td>+26.7%</td><td>793277.31</td><td>+20.8%</td></tr><tr class="alt"><td>Med Ninh Bình</td><td>Miền Bắc</td><td>879</td><td>-15.2%</td><td>-3.8%</td><td>358</td><td>-22.5%</td><td>951114000</td><td>-8.6%</td><td>+29.9%</td><td>1082040.96</td><td>+35.0%</td></tr><tr><td>Med Nghệ An</td><td>Miền Trung</td><td>855</td><td>-4.8%</td><td>-8.6%</td><td>466</td><td>-8.3%</td><td>795169450</td><td>+6.7%</td><td>+22.6%</td><td>930022.75</td><td>+34.0%</td></tr><tr class="alt"><td>Med Phú Thọ</td><td>Miền Bắc</td><td>882</td><td>-6.0%</td><td>+5.0%</td><td>429</td><td>-2.5%</td><td>776002300</td><td>+24.0%</td><td>+25.6%</td><td>879821.20</td><td>+19.6%</td></tr><tr><td>Med Thái Nguyên</td><td>Miền Bắc</td><td>836</td><td>-20.1%</td><td>-33.1%</td><td>427</td><td>-36.4%</td><td>745622230</td><td>-4.6%</td><td>-4.2%</td><td>891892.62</td><td>+43.1%</td></tr><tr class="alt"><td>Med Hải Phòng</td><td>Miền Bắc</td><td>973</td><td>-12.4%</td><td>+7.3%</td><td>476</td><td>+3.0%</td><td>1001387610</td><td>-7.8%</td><td>+24.7%</td><td>1029175.34</td><td>+16.3%</td></tr><tr><td>Med Hà Nam</td><td>Miền Bắc</td><td>794</td><td>-14.8%</td><td>-8.4%</td><td>352</td><td>-14.6%</td><td>708865860</td><td>+5.0%</td><td>+24.9%</td><td>892778.16</td><td>+36.4%</td></tr><tr class="alt"><td>Med Lào Cai</td><td>Miền Bắc</td><td>530</td><td>-9.2%</td><td>+14.7%</td><td>273</td><td>+2.2%</td><td>690409960</td><td>-6.7%</td><td>+32.9%</td><td>1302660.30</td><td>+15.9%</td></tr><tr><td>Med Quảng Ninh</td><td>Miền Bắc</td><td>619</td><td>-0.6%</td><td>+9.4%</td><td>279</td><td>-0.7%</td><td>739310590</td><td>+10.4%</td><td>+33.9%</td><td>1194362.83</td><td>+22.4%</td></tr><tr class="alt"><td>Med Vĩnh Phúc</td><td>Miền Bắc</td><td>699</td><td>-6.4%</td><td>+6.1%</td><td>266</td><td>+0.4%</td><td>723994600</td><td>+13.4%</td><td>+29.6%</td><td>1035757.65</td><td>+22.2%</td></tr><tr><td>Med Huế - Đà Nẵng</td><td>Miền Trung</td><td>908</td><td>-0.3%</td><td>+27.5%</td><td>468</td><td>+27.5%</td><td>606963310</td><td>+2.0%</td><td>+43.5%</td><td>668461.80</td><td>+12.5%</td></tr><tr class="alt"><td>Med Quảng Trị</td><td>Miền Trung</td><td>539</td><td>-27.9%</td><td>-33.8%</td><td>255</td><td>-36.9%</td><td>566773250</td><td>-17.8%</td><td>+11.9%</td><td>1051527.37</td><td>+69.0%</td></tr><tr><td>Med Hà Tĩnh</td><td>Miền Trung</td><td>664</td><td>+6.1%</td><td>-12.1%</td><td>348</td><td>-23.5%</td><td>512901100</td><td>-2.0%</td><td>+12.3%</td><td>772441.42</td><td>+27.7%</td></tr><tr class="alt"><td>Med Khánh Hòa</td><td>Miền Trung</td><td>630</td><td>-12.1%</td><td>+12.5%</td><td>295</td><td>+7.3%</td><td>543075210</td><td>-9.1%</td><td>+49.4%</td><td>862024.14</td><td>+32.8%</td></tr><tr><td>Med Gia Lai</td><td>Miền Trung</td><td>435</td><td>-23.6%</td><td>-3.1%</td><td>194</td><td>-15.3%</td><td>402056300</td><td>-27.0%</td><td>+5.4%</td><td>924267.36</td><td>+8.8%</td></tr><tr class="alt"><td>Med Cần Thơ</td><td>Miền Nam</td><td>368</td><td>-10.9%</td><td>-14.6%</td><td>194</td><td>-37.2%</td><td>252312350</td><td>+7.0%</td><td>+29.7%</td><td>685631.39</td><td>+51.9%</td></tr><tr><td>Med Lạng Sơn</td><td>Miền Bắc</td><td>330</td><td>-11.5%</td><td>+0.6%</td><td>144</td><td>+0.7%</td><td>418078280</td><td>+25.3%</td><td>+51.0%</td><td>1266903.88</td><td>+50.1%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">3.4 BV/PK theo đơn vị</div>
+    <table><thead><tr><th>Đơn vị</th><th>Miền</th><th>Số KH</th><th>%MoM KH</th><th>%YoY KH</th><th>Số KH Mới</th><th>%YoY KH Mới</th><th>Doanh thu</th><th>%MoM DT</th><th>%YoY DT</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead><tbody><tr><td>Med Ba Đình</td><td>Hà Nội</td><td>8181</td><td>+0.0%</td><td>-8.4%</td><td>1870</td><td>-8.8%</td><td>18346434657</td><td>-4.9%</td><td>+1.5%</td><td>2242566.27</td><td>+10.8%</td></tr><tr class="alt"><td>Med Tây Hồ</td><td>Hà Nội</td><td>6856</td><td>-1.3%</td><td>-1.2%</td><td>1379</td><td>-7.6%</td><td>11543677194</td><td>-1.2%</td><td>+17.4%</td><td>1683733.55</td><td>+18.8%</td></tr><tr><td>Med Thanh Xuân</td><td>Hà Nội</td><td>5218</td><td>+2.9%</td><td>-2.7%</td><td>1333</td><td>-13.4%</td><td>6445812862</td><td>+6.1%</td><td>-0.7%</td><td>1235303.35</td><td>+2.1%</td></tr><tr class="alt"><td>Med Vĩnh Phúc</td><td>Miền Bắc</td><td>2462</td><td>-4.4%</td><td>-18.3%</td><td>781</td><td>-18.2%</td><td>2477670777</td><td>-2.6%</td><td>+25.2%</td><td>1006365.06</td><td>+53.3%</td></tr><tr><td>Med Cầu Giấy</td><td>Hà Nội</td><td>1908</td><td>+4.6%</td><td>+11.8%</td><td>515</td><td>+4.3%</td><td>2560743730</td><td>-2.5%</td><td>+21.6%</td><td>1342108.87</td><td>+8.8%</td></tr><tr class="alt"><td>Med Thanh Hóa</td><td>Miền Trung</td><td>1004</td><td>-8.6%</td><td>-8.1%</td><td>385</td><td>-17.9%</td><td>1588960450</td><td>-5.9%</td><td>-4.8%</td><td>1582629.93</td><td>+3.6%</td></tr><tr><td>Med Bắc Ninh</td><td>Miền Bắc</td><td>997</td><td>+6.0%</td><td>+40.4%</td><td>407</td><td>+25.2%</td><td>1226812635</td><td>+8.6%</td><td>+44.9%</td><td>1230504.15</td><td>+3.2%</td></tr><tr class="alt"><td>Med Đông Nam Bộ</td><td>Miền Nam</td><td>764</td><td>-1.3%</td><td>+25.7%</td><td>373</td><td>+9.1%</td><td>862325250</td><td>+11.1%</td><td>+26.2%</td><td>1128697.97</td><td>+0.4%</td></tr><tr><td>Med Huế - Đà Nẵng</td><td>Miền Trung</td><td>539</td><td>+11.1%</td><td>-21.9%</td><td>226</td><td>-31.9%</td><td>327459950</td><td>+9.6%</td><td>-15.5%</td><td>607532.37</td><td>+8.2%</td></tr><tr class="alt"><td>Med Nghệ An</td><td>Miền Trung</td><td>488</td><td>+13.5%</td><td>+3.2%</td><td>250</td><td>+3.7%</td><td>618408050</td><td>+18.5%</td><td>+22.4%</td><td>1267229.61</td><td>+18.6%</td></tr><tr><td>Med Cần Thơ</td><td>Miền Nam</td><td>436</td><td>-6.0%</td><td>+12.7%</td><td>220</td><td>+8.4%</td><td>248303150</td><td>+5.7%</td><td>-0.3%</td><td>569502.64</td><td>-11.5%</td></tr><tr class="alt"><td>Med Quảng Trị</td><td>Miền Trung</td><td>418</td><td>+8.3%</td><td>+10.0%</td><td>199</td><td>+42.1%</td><td>497370500</td><td>-0.7%</td><td>+46.0%</td><td>1189881.58</td><td>+32.7%</td></tr><tr><td>Med Quảng Ninh</td><td>Miền Bắc</td><td>289</td><td>+1.4%</td><td>-15.7%</td><td>84</td><td>-43.6%</td><td>311027800</td><td>+7.6%</td><td>+5.0%</td><td>1076220.76</td><td>+24.6%</td></tr><tr class="alt"><td>Med Phú Thọ</td><td>Miền Bắc</td><td>257</td><td>-6.5%</td><td>-12.0%</td><td>76</td><td>-27.6%</td><td>246776000</td><td>-2.7%</td><td>+1.5%</td><td>960217.90</td><td>+15.3%</td></tr><tr><td>Med Đắk Lắk</td><td>Miền Trung</td><td>80</td><td>+14.3%</td><td>-31.6%</td><td>47</td><td>-25.4%</td><td>88339950</td><td>+21.9%</td><td>+32.1%</td><td>1104249.38</td><td>+93.1%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">6.4 Top 20 Nhóm dịch vụ (by lượt)</div>
+    <table><thead><tr><th>Nhóm DV</th><th>Lượt chỉ định</th><th>%MoM</th><th>%YoY</th><th>Doanh thu DV</th><th>%MoM DT DV</th><th>%YoY DT DV</th></tr></thead><tbody><tr><td>Hoá Sinh</td><td>990,036</td><td>+8.6%</td><td>+23.5%</td><td>51203452222</td><td>+9.5%</td><td>+26.7%</td></tr><tr class="alt"><td>Miễn dịch</td><td>202,474</td><td>+4.5%</td><td>+3.3%</td><td>42654279026</td><td>+3.8%</td><td>+4.9%</td></tr><tr><td>NT-HM</td><td>95,925</td><td>+2.3%</td><td>+10.4%</td><td>15360761195</td><td>-0.8%</td><td>+12.4%</td></tr><tr class="alt"><td>Huyết học</td><td>142,598</td><td>+8.5%</td><td>+22.8%</td><td>19156267222</td><td>+2.2%</td><td>+19.3%</td></tr><tr><td>Siêu âm</td><td>70,045</td><td>+25.8%</td><td>+29.4%</td><td>12343559110</td><td>+29.8%</td><td>+43.0%</td></tr><tr class="alt"><td>Khác</td><td>40,538</td><td>+9.3%</td><td>+60.7%</td><td>2989303900</td><td>+35.3%</td><td>+45.0%</td></tr><tr><td>PCR</td><td>14,059</td><td>-0.1%</td><td>-3.5%</td><td>12670744599</td><td>+0.3%</td><td>-5.5%</td></tr><tr class="alt"><td>TB-GPB</td><td>17,444</td><td>+13.6%</td><td>+12.0%</td><td>6361143335</td><td>+6.9%</td><td>+16.1%</td></tr><tr><td>Vi sinh</td><td>16,666</td><td>+3.1%</td><td>-3.7%</td><td>4696689886</td><td>+0.9%</td><td>+8.5%</td></tr><tr class="alt"><td>Khám nội TQ</td><td>18,447</td><td>+2.6%</td><td>+17.8%</td><td>825934820</td><td>+13.1%</td><td>+31.8%</td></tr><tr><td>XQ</td><td>32,125</td><td>+47.9%</td><td>+31.1%</td><td>3348196100</td><td>+36.3%</td><td>+24.6%</td></tr><tr class="alt"><td>Di truyền</td><td>9,476</td><td>+4.1%</td><td>+46.6%</td><td>24074956212</td><td>+3.2%</td><td>+48.6%</td></tr><tr><td>Nội Soi TH</td><td>6,159</td><td>-1.7%</td><td>-9.2%</td><td>3477715010</td><td>-1.6%</td><td>-2.5%</td></tr><tr class="alt"><td>Điện Tim</td><td>11,931</td><td>+14.9%</td><td>-0.5%</td><td>1178378920</td><td>+34.8%</td><td>+25.6%</td></tr><tr><td>Sản</td><td>5,889</td><td>+76.3%</td><td>+3.7%</td><td>693311570</td><td>+58.8%</td><td>+22.3%</td></tr><tr class="alt"><td>Thủ thuật-CC</td><td>4,533</td><td>+58.9%</td><td>+148.1%</td><td>241811000</td><td>+210.2%</td><td>+189.0%</td></tr><tr><td>TMH</td><td>6,143</td><td>+2.7%</td><td>+2.8%</td><td>1289366380</td><td>+1.6%</td><td>-1.8%</td></tr><tr class="alt"><td>RHM</td><td>3,864</td><td>+8.9%</td><td>-4.6%</td><td>6963086800</td><td>+14.0%</td><td>-11.6%</td></tr><tr><td>Thuốc</td><td>13,412</td><td>-4.9%</td><td>-8.6%</td><td>1651554646</td><td>-5.0%</td><td>+13.6%</td></tr><tr class="alt"><td>CT</td><td>2,861</td><td>-7.9%</td><td>+1.7%</td><td>2958144330</td><td>-9.4%</td><td>+5.0%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">6.6 DT/KH Thế hệ × Giới tính</div>
+    <table><thead><tr><th>Thế hệ</th><th>Giới tính</th><th>Số KH</th><th>Số lượt</th><th>Lượt/KH</th><th>%YoY</th><th>DT/Lượt</th><th>%YoY</th><th>DV/Lượt</th><th>%YoY</th><th>DT TB/DV</th><th>%YoY</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead><tbody><tr><td>Gen Y</td><td>Nữ</td><td>16355</td><td>20607</td><td>1.2600</td><td>+0.6%</td><td>931,354</td><td>+15.0%</td><td>83.366</td><td>+30.2%</td><td>11,172</td><td>-11.7%</td><td>1,173,489.12</td><td>+15.7%</td></tr><tr class="alt"><td>Gen Y</td><td>Nam</td><td>11956</td><td>13088</td><td>1.0947</td><td>-0.2%</td><td>1,146,396</td><td>+11.4%</td><td>131.260</td><td>+21.4%</td><td>8,734</td><td>-8.3%</td><td>1,254,936.79</td><td>+11.2%</td></tr><tr><td>Gen Z</td><td>Nữ</td><td>10615</td><td>13477</td><td>1.2696</td><td>+3.5%</td><td>855,584</td><td>+2.3%</td><td>127.471</td><td>+4.9%</td><td>6,712</td><td>-2.4%</td><td>1,086,265.46</td><td>+6.0%</td></tr><tr class="alt"><td>Gen X</td><td>Nữ</td><td>9752</td><td>10647</td><td>1.0918</td><td>-0.6%</td><td>1,290,482</td><td>+21.0%</td><td>161.353</td><td>+20.0%</td><td>7,998</td><td>+0.8%</td><td>1,408,916.79</td><td>+20.3%</td></tr><tr><td>Gen X</td><td>Nam</td><td>8843</td><td>9690</td><td>1.0958</td><td>-0.3%</td><td>1,320,464</td><td>+24.6%</td><td>177.289</td><td>+20.4%</td><td>7,448</td><td>+3.5%</td><td>1,446,940.63</td><td>+24.2%</td></tr><tr class="alt"><td>Baby Boomers</td><td>Nữ</td><td>6633</td><td>7221</td><td>1.0886</td><td>-1.5%</td><td>1,174,753</td><td>+24.0%</td><td>237.907</td><td>+24.0%</td><td>4,938</td><td>+0.0%</td><td>1,278,892.17</td><td>+22.1%</td></tr><tr><td>Gen Z</td><td>Nam</td><td>5486</td><td>5958</td><td>1.0860</td><td>-0.3%</td><td>1,076,487</td><td>+22.1%</td><td>288.340</td><td>+12.7%</td><td>3,733</td><td>+8.4%</td><td>1,169,105.02</td><td>+21.7%</td></tr><tr class="alt"><td>Baby Boomers</td><td>Nam</td><td>5179</td><td>5777</td><td>1.1155</td><td>+1.0%</td><td>1,140,670</td><td>+13.2%</td><td>297.374</td><td>+25.3%</td><td>3,836</td><td>-9.6%</td><td>1,272,379.19</td><td>+14.3%</td></tr><tr><td>Gen Alpha</td><td>Nam</td><td>3456</td><td>3739</td><td>1.0819</td><td>-1.9%</td><td>884,144</td><td>+18.1%</td><td>459.462</td><td>+51.2%</td><td>1,924</td><td>-21.9%</td><td>956,543.28</td><td>+15.9%</td></tr><tr class="alt"><td>Gen Alpha</td><td>Nữ</td><td>2675</td><td>2923</td><td>1.0927</td><td>-1.0%</td><td>861,681</td><td>+13.7%</td><td>587.728</td><td>+40.3%</td><td>1,466</td><td>-19.0%</td><td>941,567.15</td><td>+12.5%</td></tr><tr><td>Silent Gen</td><td>Nam</td><td>1350</td><td>1422</td><td>1.0533</td><td>-1.7%</td><td>818,672</td><td>+25.8%</td><td>1208.107</td><td>+28.6%</td><td>678</td><td>-2.1%</td><td>862,334.64</td><td>+23.7%</td></tr><tr class="alt"><td>Silent Gen</td><td>Nữ</td><td>867</td><td>947</td><td>1.0923</td><td>+0.9%</td><td>1,002,965</td><td>+14.7%</td><td>1814.074</td><td>+28.3%</td><td>553</td><td>-10.6%</td><td>1,095,510.86</td><td>+15.7%</td></tr><tr><td>Gen Beta</td><td>Nam</td><td>649</td><td>748</td><td>1.1525</td><td>+6.4%</td><td>746,139</td><td>+19.9%</td><td>2296.695</td><td>-52.6%</td><td>325</td><td>+152.9%</td><td>859,956.59</td><td>+27.6%</td></tr><tr class="alt"><td>Gen Beta</td><td>Nữ</td><td>491</td><td>552</td><td>1.1242</td><td>+4.6%</td><td>822,638</td><td>+34.5%</td><td>3112.188</td><td>-41.3%</td><td>264</td><td>+129.3%</td><td>924,839.85</td><td>+40.6%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">6.7 DT/KH Province top 20</div>
+    <table><thead><tr><th>Tỉnh/Thành</th><th>Số KH</th><th>Lượt/KH</th><th>%YoY</th><th>DT/Lượt</th><th>%YoY</th><th>DV/Lượt</th><th>%YoY</th><th>DT TB/DV</th><th>%YoY</th><th>DT/KH</th><th>%YoY DT/KH</th></tr></thead><tbody><tr><td>Thành phố Hà Nội</td><td>32638</td><td>1.1746</td><td>+1.6%</td><td>1,132,595</td><td>+11.5%</td><td>44.810</td><td>+9.1%</td><td>25,275</td><td>+2.2%</td><td>1,330,394.57</td><td>+13.4%</td></tr><tr class="alt"><td>Tỉnh Phú Thọ</td><td>4538</td><td>1.1424</td><td>-8.1%</td><td>942,649</td><td>+49.1%</td><td>331.390</td><td>+37.6%</td><td>2,845</td><td>+8.4%</td><td>1,076,838.80</td><td>+37.0%</td></tr><tr><td>Tỉnh Bắc Ninh</td><td>3135</td><td>1.1582</td><td>-1.7%</td><td>1,138,177</td><td>+12.7%</td><td>473.128</td><td>+1.5%</td><td>2,406</td><td>+11.1%</td><td>1,318,251.76</td><td>+10.8%</td></tr><tr class="alt"><td>Tỉnh Ninh Bình</td><td>2697</td><td>1.1398</td><td>+0.8%</td><td>943,550</td><td>+23.9%</td><td>558.858</td><td>+13.0%</td><td>1,688</td><td>+9.6%</td><td>1,075,443.63</td><td>+24.9%</td></tr><tr><td>Tỉnh Hưng Yên</td><td>2551</td><td>1.1356</td><td>-0.8%</td><td>1,026,588</td><td>+21.2%</td><td>593.002</td><td>+2.1%</td><td>1,731</td><td>+18.7%</td><td>1,165,826.97</td><td>+20.3%</td></tr><tr class="alt"><td>Tỉnh Thanh Hóa</td><td>2374</td><td>1.1349</td><td>-0.5%</td><td>1,174,528</td><td>+17.4%</td><td>637.687</td><td>+23.9%</td><td>1,842</td><td>-5.2%</td><td>1,332,847.20</td><td>+16.9%</td></tr><tr><td>Thành phố Hồ Chí Minh</td><td>2258</td><td>1.1820</td><td>+0.9%</td><td>838,717</td><td>+13.5%</td><td>643.660</td><td>+3.9%</td><td>1,303</td><td>+9.3%</td><td>991,379.96</td><td>+14.6%</td></tr><tr class="alt"><td>Thành phố Hải Phòng</td><td>1927</td><td>1.1899</td><td>+3.9%</td><td>1,153,486</td><td>+18.5%</td><td>749.205</td><td>+1.3%</td><td>1,540</td><td>+17.0%</td><td>1,372,570.67</td><td>+23.1%</td></tr><tr><td>Tỉnh Nghệ An</td><td>1212</td><td>1.1568</td><td>-0.7%</td><td>992,829</td><td>+36.7%</td><td>1225.341</td><td>+15.4%</td><td>810</td><td>+18.5%</td><td>1,148,470.66</td><td>+35.7%</td></tr><tr class="alt"><td>Tỉnh Quảng Ninh</td><td>748</td><td>1.1484</td><td>+0.8%</td><td>1,192,390</td><td>+24.2%</td><td>1999.916</td><td>+16.0%</td><td>596</td><td>+7.0%</td><td>1,369,335.56</td><td>+25.2%</td></tr><tr><td>Tỉnh Quảng Trị</td><td>926</td><td>1.0940</td><td>-0.9%</td><td>1,030,120</td><td>+48.6%</td><td>1695.882</td><td>+34.2%</td><td>607</td><td>+10.7%</td><td>1,126,902.21</td><td>+47.2%</td></tr><tr class="alt"><td>Tỉnh Thanh Hóa</td><td>2374</td><td>1.1349</td><td>-0.5%</td><td>1,174,528</td><td>+17.4%</td><td>637.687</td><td>+23.9%</td><td>1,842</td><td>-5.2%</td><td>1,332,847.20</td><td>+16.9%</td></tr><tr><td>Thành phố Đà Nẵng</td><td>761</td><td>1.0802</td><td>-3.4%</td><td>717,927</td><td>+43.9%</td><td>2089.937</td><td>+4.3%</td><td>344</td><td>+38.1%</td><td>775,474.84</td><td>+39.1%</td></tr><tr class="alt"><td>Tỉnh Khánh Hòa</td><td>576</td><td>1.0955</td><td>-1.1%</td><td>782,578</td><td>+28.5%</td><td>2722.548</td><td>+2.6%</td><td>287</td><td>+25.2%</td><td>857,303.45</td><td>+27.0%</td></tr><tr><td>Tỉnh Lào Cai</td><td>528</td><td>1.1136</td><td>-2.6%</td><td>1,363,758</td><td>+14.3%</td><td>2921.646</td><td>+16.0%</td><td>467</td><td>-1.5%</td><td>1,518,730.62</td><td>+11.3%</td></tr><tr class="alt"><td>Tỉnh Hà Tĩnh</td><td>719</td><td>1.1669</td><td>+3.8%</td><td>793,122</td><td>+7.9%</td><td>2047.590</td><td>+18.3%</td><td>387</td><td>-8.8%</td><td>925,492.28</td><td>+12.1%</td></tr><tr><td>Thành phố Cần Thơ</td><td>459</td><td>1.0850</td><td>-3.1%</td><td>546,797</td><td>+15.7%</td><td>3449.655</td><td>+16.4%</td><td>159</td><td>-0.6%</td><td>593,257.19</td><td>+12.1%</td></tr><tr class="alt"><td>Thành phố Huế</td><td>441</td><td>1.0794</td><td>+0.2%</td><td>429,166</td><td>-21.3%</td><td>3609.092</td><td>+15.3%</td><td>119</td><td>-31.8%</td><td>463,226.30</td><td>-21.2%</td></tr><tr><td>Tỉnh Đồng Nai</td><td>450</td><td>1.0956</td><td>-3.1%</td><td>683,034</td><td>+8.2%</td><td>3484.641</td><td>+42.0%</td><td>196</td><td>-23.8%</td><td>748,301.16</td><td>+4.9%</td></tr><tr class="alt"><td>Tỉnh Gia Lai</td><td>402</td><td>1.0796</td><td>-4.5%</td><td>901,393</td><td>+15.5%</td><td>3958.359</td><td>+21.2%</td><td>228</td><td>-4.7%</td><td>973,145.90</td><td>+10.3%</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">6.8 Top 10 Bệnh lý × AOV (BV/PK)</div>
+    <table><thead><tr><th>Nhóm bệnh lý</th><th>Số KH</th><th>Số lượt</th><th>Lượt/KH</th><th>DT/Lượt</th><th>DV/Lượt</th><th>DT TB/DV</th><th>DT/KH</th></tr></thead><tbody><tr><td>Những người đến CSYT để khám và KTSK</td><td>2975</td><td>3020</td><td>1.0151</td><td>2,212,829</td><td>568.850</td><td>3,890.00</td><td>2,246,300.13</td></tr><tr class="alt"><td>Những người đến CQYT về sinh sản</td><td>2145</td><td>2703</td><td>1.2601</td><td>1,173,289</td><td>635.563</td><td>1,846.06</td><td>1,478,507.78</td></tr><tr><td>Nhiễm trùng hô hấp trên cấp</td><td>1244</td><td>1375</td><td>1.1053</td><td>815,967</td><td>1,249.402</td><td>653.09</td><td>901,892.26</td></tr><tr class="alt"><td>Bệnh khớp</td><td>893</td><td>921</td><td>1.0313</td><td>1,674,107</td><td>1,865.286</td><td>897.51</td><td>1,726,598.94</td></tr><tr><td>Bệnh lý tăng huyết áp</td><td>800</td><td>819</td><td>1.0238</td><td>2,204,554</td><td>2,097.592</td><td>1,050.99</td><td>2,256,911.75</td></tr><tr class="alt"><td>Viêm gan virus</td><td>789</td><td>798</td><td>1.0114</td><td>2,481,363</td><td>2,152.792</td><td>1,152.63</td><td>2,509,667.98</td></tr><tr><td>Bệnh của thực quản, dạ dày và tá tràng</td><td>744</td><td>763</td><td>1.0255</td><td>3,288,513</td><td>2,251.544</td><td>1,460.56</td><td>3,372,493.71</td></tr><tr class="alt"><td>Rối loạn chuyển hóa</td><td>702</td><td>708</td><td>1.0085</td><td>1,469,312</td><td>2,426.452</td><td>605.54</td><td>1,481,870.22</td></tr><tr><td>Triệu chứng tiêu hóa</td><td>693</td><td>704</td><td>1.0159</td><td>1,657,836</td><td>2,440.239</td><td>679.37</td><td>1,684,150.99</td></tr><tr class="alt"><td>Đái tháo đường</td><td>669</td><td>690</td><td>1.0314</td><td>1,450,949</td><td>2,489.751</td><td>582.77</td><td>1,496,494.02</td></tr></tbody></table>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-title">11.3 Nhóm bệnh × Thế hệ (BV/PK)</div>
+    <table><thead><tr><th>Nhóm bệnh</th><th>Thế hệ</th><th>KH Mới</th><th>KH Cũ</th><th>Tổng</th></tr></thead><tbody><tr><td>Các vấn đề sinh sản</td><td>Gen Z</td><td>290</td><td>1095</td><td>1385</td></tr><tr class="alt"><td>KSK</td><td>Gen Y</td><td>359</td><td>769</td><td>1128</td></tr><tr><td>KSK</td><td>Gen Z</td><td>345</td><td>480</td><td>825</td></tr><tr class="alt"><td>Các vấn đề sinh sản</td><td>Gen Y</td><td>119</td><td>632</td><td>751</td></tr><tr><td>KSK</td><td>Gen X</td><td>183</td><td>413</td><td>596</td></tr><tr class="alt"><td>Bệnh lý THA</td><td>Baby Boomers</td><td>50</td><td>356</td><td>406</td></tr><tr><td>Viêm gan virus</td><td>Gen Y</td><td>38</td><td>322</td><td>360</td></tr><tr class="alt"><td>Nhiễm trùng hô hấp</td><td>Gen Alpha</td><td>88</td><td>267</td><td>355</td></tr><tr><td>Nhiễm trùng hô hấp</td><td>Gen Y</td><td>50</td><td>298</td><td>348</td></tr><tr class="alt"><td>Rối loạn chuyển hóa</td><td>Gen X</td><td>44</td><td>275</td><td>319</td></tr><tr><td>Bệnh khớp</td><td>Gen Y</td><td>56</td><td>236</td><td>292</td></tr><tr class="alt"><td>Đái tháo đường</td><td>Gen X</td><td>23</td><td>263</td><td>286</td></tr><tr><td>Bệnh lý THA</td><td>Gen X</td><td>34</td><td>251</td><td>285</td></tr><tr class="alt"><td>Bệnh thực quản/dạ dày</td><td>Gen Y</td><td>42</td><td>223</td><td>265</td></tr><tr><td>Bệnh khớp</td><td>Gen X</td><td>54</td><td>210</td><td>264</td></tr></tbody></table>
+  </div>
+</section>
+</main>
+<script>
+const links = document.querySelectorAll('.nav a');
+const secs = document.querySelectorAll('section[id]');
+const obs = new IntersectionObserver(e=>{
+  e.forEach(en=>{
+    if(en.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a = document.querySelector('.nav a[href="#'+en.target.id+'"]');
+      if(a) a.classList.add('active');
+    }
+  });
+},{rootMargin:'-50% 0px -50% 0px'});
+secs.forEach(s=>obs.observe(s));
+</script>
+</body></html>

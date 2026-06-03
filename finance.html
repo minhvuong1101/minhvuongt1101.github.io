@@ -1,122 +1,88 @@
-<!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Single - Future Imperfect by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="single is-preload">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Quản trị tài chính - Truong Minh Vuong Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0F1729; --navy2: #162035; --off-white: #F5F5F0;
+            --blue: #2554E7; --purple: #9333EA; --green: #10B981; --orange: #F97316; --red: #EF4444;
+            --border: #E2E8F0; --bg-surface: #F8FAFC; --text-primary: #1A202C;
+            --text-muted: #64748B; --text-light: #94A3B8;
+            --radius-lg: 16px; --radius-md: 12px; --radius-sm: 8px; --radius-xs: 4px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'IBM Plex Sans', sans-serif; color: var(--text-primary); background: var(--bg-surface); line-height: 1.6; }
+        .top-bar { height: 52px; background: var(--navy); }
+        .anchor-nav { background: white; border-bottom: 1px solid var(--border); padding: 0 48px; display: flex; position: sticky; top: 0; z-index: 100; justify-content: center; }
+        .anchor-link { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); padding: 16px 24px; border-bottom: 2px solid transparent; text-decoration: none; }
+        .anchor-link:hover { color: var(--blue); border-bottom-color: var(--blue); }
+        .container { max-width: 900px; margin: 0 auto; padding: 48px; background: white; min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.02); }
+        .back-link { display: inline-block; margin-bottom: 32px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600; color: var(--blue); text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .project-header { margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 32px; }
+        .project-title { font-family: 'Outfit', sans-serif; font-size: 40px; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.2; }
+        .project-meta { font-family: 'IBM Plex Mono', monospace; color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+        .dashboard-link { display: inline-block; background: var(--blue); color: white; padding: 14px 28px; border-radius: var(--radius-sm); text-decoration: none; font-weight: 600; font-family: 'Outfit', sans-serif; transition: background 0.2s; }
+        .dashboard-link:hover { background: #1d44c2; }
+        .project-content h3 { font-family: 'Outfit', sans-serif; font-size: 24px; color: var(--navy); margin: 40px 0 16px; border-left: 4px solid var(--blue); padding-left: 14px; }
+        .project-content p { margin-bottom: 16px; font-size: 16px; line-height: 1.7; }
+        .project-content ul { margin-bottom: 16px; padding-left: 24px; }
+        .project-content li { margin-bottom: 8px; line-height: 1.6; }
+        .project-content img { max-width: 100%; border-radius: var(--radius-md); margin: 24px 0; border: 1px solid var(--border); display: block; }
+        @media (max-width: 768px) { .container { padding: 24px; } .project-title { font-size: 32px; } .anchor-nav { overflow-x: auto; justify-content: flex-start; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+    <nav class="anchor-nav">
+        <a href="index.html#about" class="anchor-link">About</a>
+        <a href="index.html#skills" class="anchor-link">Skills</a>
+        <a href="index.html#projects" class="anchor-link">Projects</a>
+        <a href="index.html#contact" class="anchor-link">Contact</a>
+    </nav>
+    
+    <main class="container">
+        <a href="index.html#projects" class="back-link">← Back to Portfolio</a>
+        
+        <header class="project-header">
+            <h1 class="project-title">Báo cáo Quản trị tài chính</h1>
+            <div class="project-meta">SharePoint | Power BI | Financial Reporting</div>
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiZTQ1MTUxMmUtYzFkMC00MDYyLWFiYjYtYzU0MjNiMjE2M2Y5IiwidCI6IjNiODIyNjJiLTUzZjUtNGY3Ny1iMGVmLWEwMTg5NmIwNmQwYyIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener noreferrer" class="dashboard-link">Truy cập Dashboard</a>
+        </header>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-						<!-- Main -->
-						<div id="main">
+        <div class="project-content">
+            <h3>1. Tổng Quan</h3>
+            <p>Dự án xây dựng hệ thống nhập liệu bằng SharePoint List kết hợp với báo cáo phân tích trên Power BI, giúp theo dõi tình hình kinh doanh, tài chính và dòng tiền của doanh nghiệp. Hệ thống bao gồm hai phần chính:</p>
+            <ul>
+                <li><strong>Báo cáo thuế:</strong> Theo dõi các chỉ số tài chính phục vụ công tác khai báo thuế theo từng năm.</li>
+                <li><strong>Báo cáo quản trị:</strong> Tổng hợp và phân tích tình hình tài chính, hỗ trợ ra quyết định quản lý.</li>
+            </ul>
 
-							<!-- Featured Post -->
-								<article class="post featured">
-									<header class="major">
+            <h3>2. Dataset</h3>
+            <p>Hệ thống dữ liệu được thiết lập thông qua SharePoint List, nơi người dùng nhập liệu trực tiếp. Power BI kết nối với dữ liệu này để tổng hợp và trực quan hóa thông tin.</p>
+            <img src="images/finance_sharepointlist.png" alt="SharePoint List" onerror="this.style.display='none'">
+            
+            <p><strong>Data Schema Power BI:</strong></p>
+            <ul>
+                <li><strong>Báo cáo thuế:</strong></li>
+                <img src="images/schema_thue.png" alt="Schema Thuế" onerror="this.style.display='none'">
+                <li><strong>Báo cáo quản trị:</strong></li>
+                <img src="images/schema_qtri.png" alt="Schema Quản trị" onerror="this.style.display='none'">
+            </ul>
 
-						<!-- Featured Post -->
-						<article class="post featured">
-							<header class="major">
-								
-								<h2><a href="#">Báo cáo Quản trị tài chính</a></h2>
-								</header>
-								
-								<div style="text-align: center;">
-									<a href="https://app.powerbi.com/view?r=eyJrIjoiZTQ1MTUxMmUtYzFkMC00MDYyLWFiYjYtYzU0MjNiMjE2M2Y5IiwidCI6IjNiODIyNjJiLTUzZjUtNGY3Ny1iMGVmLWEwMTg5NmIwNmQwYyIsImMiOjEwfQ%3D%3D" 
-										 target="_blank" rel="noopener noreferrer"
-										 style="
-													display: inline-block;
-													background-color: gray;
-													color: white; /* Giữ màu chữ trắng */
-													padding: 12px 30px;
-													border: none;
-													border-radius: 5px;
-													font-size: 16px;
-													text-decoration: none;
-													text-align: center;
-													transition: all 0.3s ease-in-out;" 
-										 onmouseover="this.style.backgroundColor='darkgray'; this.style.transform='translateY(-3px)'; this.style.color='white';"
-										 onmouseout="this.style.backgroundColor='gray'; this.style.transform='translateY(0)'; this.style.color='white';">
-											Truy cập Dashboard
-									</a>
-							</div>
-							
-							
-							
-							
-								<p><b>1. Tổng Quan</b></p>
-								<p>Dự án xây dựng hệ thống nhập liệu bằng SharePoint List kết hợp với báo cáo phân tích trên Power BI, giúp theo dõi tình hình kinh doanh, tài chính và dòng tiền của doanh nghiệp. Hệ thống bao gồm hai phần chính:								</p>
-								<p> - Báo cáo thuế: Theo dõi các chỉ số tài chính phục vụ công tác khai báo thuế theo từng năm.</p>
-								<p> - Báo cáo quản trị: Tổng hợp và phân tích tình hình tài chính, hỗ trợ ra quyết định quản lý.</p>
-
-								<p><b>2. Dataset</b> </p>
-								<p>Hệ thống dữ liệu được thiết lập thông qua SharePoint List, nơi người dùng nhập liệu trực tiếp. Power BI kết nối với dữ liệu này để tổng hợp và trực quan hóa thông tin. </p>
-								<a href="#" class="image fit"><img src="images/finance_sharepointlist.png" /></a>
-								<p> Data Schema Power BI</p>
-								<p>- Báo cáo thuế</p>
-								<a href="#" class="image fit"><img src="images/schema_thue.png" /></a>
-								<p>- Báo cáo quản trị</p>
-								<a href="#" class="image fit"><img src="images/schema_qtri.png" /></a>
-
-								<p><b>3. Dashboard</b> </p>
-								<p>Báo cáo gồm nhiều phần, tập trung vào các khía cạnh tài chính cốt lõi:</p>
-								<p>- Kết quả kinh doanh: Phân tích doanh thu, chi phí, lợi nhuận theo thời gian.</p>
-								<p>- Bảng cân đối kế toán: Theo dõi tài sản và nguồn vốn.</p>
-								<p>- Dòng tiền: Giám sát lưu chuyển tiền tệ và cơ cấu dòng tiền.</p>
-								<p>- Chỉ số tài chính: Đánh giá 20 chỉ số quan trọng hỗ trợ quản lý.</p>
-								<p>- Thiết lập mục tiêu: So sánh kết quả thực tế với kế hoạch đặt ra.</p>
-
-							</article>
-
-					</div>
-
-				<!-- Footer -->
-				<footer id="footer">
-					<section>
-						<form method="post" action="#">
-							<div class="fields">
-								<div class="field">
-
-								<div class="field">
-						</form>
-					</section>
-					<section class="split contact">
-						<section class="alt">
-							<h3>Address</h3>
-							<p>Hai Ba Trung, Ha Noi
-						</section>
-						<section>
-							<h3>Phone</h3>
-							<p><a href="#">(+84)942847606</a></p>
-						</section>
-						<section>
-							<h3>Email</h3>
-							<p><a href="#">minhvuongt1101@gmail.commercial</a></p>
-						</section>
-						<section>
-							<h3>Social</h3>
-							<ul class="icons alt">
-								<li><a href="https://www.linkedin.com/in/truongminh-vuong110/" class="icon brands alt fa-linkedin"><span class="label">Linkedin</span></a></li>
-								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-							</ul>
-						</section>
-					</section>
-				</footer>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+            <h3>3. Dashboard</h3>
+            <p>Báo cáo gồm nhiều phần, tập trung vào các khía cạnh tài chính cốt lõi:</p>
+            <ul>
+                <li><strong>Kết quả kinh doanh:</strong> Phân tích doanh thu, chi phí, lợi nhuận theo thời gian.</li>
+                <li><strong>Bảng cân đối kế toán:</strong> Theo dõi tài sản và nguồn vốn.</li>
+                <li><strong>Dòng tiền:</strong> Giám sát lưu chuyển tiền tệ và cơ cấu dòng tiền.</li>
+                <li><strong>Chỉ số tài chính:</strong> Đánh giá 20 chỉ số quan trọng hỗ trợ quản lý.</li>
+                <li><strong>Thiết lập mục tiêu:</strong> So sánh kết quả thực tế với kế hoạch đặt ra.</li>
+            </ul>
+        </div>
+    </main>
+</body>
 </html>
